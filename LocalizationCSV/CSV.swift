@@ -7,13 +7,51 @@
 //
 
 struct CSV {
-    let temp: StringsFile
+    typealias Row = [String]
+    let grid: [Row]
     
     init(stringsFile: StringsFile) {
-        temp = stringsFile
+        var grid = [Row]()
+        
+        let firstRow = ["Key", "English", "Comment"]
+        grid.append(firstRow)
+        
+        for entry in stringsFile.entries {
+            let row = [entry.key.csvEscaped(), entry.value.csvEscaped(), entry.comment.csvEscaped()]
+            grid.append(row)
+        }
+        
+        self.grid = grid
     }
     
     func textRepresentation() -> String {
-        return temp.textRepresentation()
+        var rowStrings = [String]()
+        for row in grid {
+            rowStrings.append(row.joinWithSeparator(","))
+        }
+        return rowStrings.joinWithSeparator("\n")
+    }
+}
+
+extension String {
+    func csvEscaped() -> String {
+        if self.containsString("\"") {
+            var escapedCharacters = [Character]()
+            escapedCharacters.append("\"")
+            for character in self.characters {
+                if character == "\"" {
+                    escapedCharacters.append("\"")
+                    escapedCharacters.append(character)
+                } else {
+                    escapedCharacters.append(character)
+                }
+            }
+            escapedCharacters.append("\"")
+            return String(escapedCharacters)
+        } else if self.containsString(",") {
+            return "\"" + self + "\""
+        }
+        
+        return self
     }
 }
