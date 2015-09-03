@@ -37,7 +37,7 @@ class StringsFile {
             }
             
             if line.hasPrefix("/*") {
-                currentComment = line
+                currentComment = removeCommentSyntaxFromLine(line)
             } else if line.hasPrefix("\"") {
                 currentKeyValue = keyValueFromLine(line)
             }
@@ -56,6 +56,10 @@ class StringsFile {
         }
         
         self.entries = entries
+    }
+    
+    private func removeCommentSyntaxFromLine(line: String) -> String {
+        return line[line.startIndex.advancedBy(2)..<line.endIndex.advancedBy(-2)]
     }
     
     private func keyValueFromLine(line: String) -> (key: String, value: String) {
