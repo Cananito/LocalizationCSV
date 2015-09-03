@@ -23,6 +23,10 @@ public func outputStringFromLaunchPath(launchPath: String, arguments: Array<Stri
     return NSString(data: outputData, encoding: NSUTF8StringEncoding) as! String
 }
 
+public func executeShellCommand(command: String) -> String {
+    return outputStringFromLaunchPath("/bin/sh", arguments: [ "-c", command ])
+}
+
 public func isPathDirectory(path: String) -> Bool {
     var isDirectory = ObjCBool(false)
     if NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory:&isDirectory) == false {

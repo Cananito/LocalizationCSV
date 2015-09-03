@@ -24,6 +24,15 @@ class StringsFile {
         return "StringsFile"
     }
     
+    func entryForKey(key: String) -> StringsFileEntry? {
+        for entry in entries {
+            if entry.key == key {
+                return entry
+            }
+        }
+        return nil
+    }
+    
     // MARK: Private Methods
     
     private func populateEntriesFromTextRepresentation(textRepresentation: String) {
@@ -59,7 +68,26 @@ class StringsFile {
     }
     
     private func removeCommentSyntaxFromLine(line: String) -> String {
-        return line[line.startIndex.advancedBy(2)..<line.endIndex.advancedBy(-2)]
+        let startAdvanceBy: Int
+        let endAdvanceBy: Int
+        
+        if line.hasPrefix("/* ") {
+            startAdvanceBy = 3
+        } else if line.hasPrefix("/*") {
+            startAdvanceBy = 2
+        } else {
+            startAdvanceBy = 0
+        }
+        
+        if line.hasSuffix(" */") {
+            endAdvanceBy = -3
+        } else if line.hasSuffix("*/") {
+            endAdvanceBy = -2
+        } else {
+            endAdvanceBy = 0
+        }
+        
+        return line[line.startIndex.advancedBy(startAdvanceBy)..<line.endIndex.advancedBy(endAdvanceBy)]
     }
     
     private func keyValueFromLine(line: String) -> (key: String, value: String) {
