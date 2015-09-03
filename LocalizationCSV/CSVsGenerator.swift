@@ -8,20 +8,24 @@
 
 import Foundation
 
-let localeFolderAndLanguageRelation = [
+public enum Error: ErrorType {
+    case DestinationFolderAlreadyExists(message: String)
+}
+
+private let localeFolderAndLanguageRelation = [
     "en-CA.lproj" : "English-Canada",
     "en-US.lproj" : "English-USA",
     "es-MX.lproj" : "Spanish-Mexico",
     "fr-CA.lproj" : "French-Canada"
 ]
 
-func generateCSVsForFolderPath(folderPath: String) {
+func generateCSVsForFolderPath(folderPath: String, destinationPath: String) throws {
     do {
-        let downloadsFolderPathURL = try NSFileManager.defaultManager().URLForDirectory(.DownloadsDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
-        let downloadsFolderPath = downloadsFolderPathURL.relativePath!
-        
-        let destinationPath = downloadsFolderPath + "/" + NSDateFormatter.nowDateString()
-        if NSFileManager.defaultManager().fileExistsAtPath(destinationPath) == false {
+        let folderName = NSDateFormatter.nowDateString()
+        let destinationPath = destinationPath + "/" + folderName
+        if NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
+            throw Error.DestinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
+        } else {
             try NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
         }
         
@@ -41,7 +45,7 @@ private func generateCSVFromLocalizableStringsFileForProject(folderPath: String,
     
     let tempLocalizableStringsFile = destinationPath + "/Localizable.strings"
     try generateCSVFromStringsFilePath(tempLocalizableStringsFile, destinationPath: destinationPath)
-    deleteFileAtPath(tempLocalizableStringsFile)
+    try deleteFileAtPath(tempLocalizableStringsFile)
 }
 
 // MARK: Interface Builder
@@ -76,7 +80,7 @@ private func generateCSVsFromInterfaceBuilderBaseFolder(folderPath: String, dest
         // `ibtool --export-strings-file Main.strings Main.storyboard`
         executeShellCommand("ibtool --export-strings-file \(escapedDestination) \(escapedPath)")
         try generateCSVFromStringsFilePath(destination, destinationPath: destinationPath)
-        deleteFileAtPath(destination)
+        try deleteFileAtPath(destination)
     }
 }
 
@@ -125,8 +129,8 @@ private func appendExistingTranslationsFromLocaleFolder(folderPath: String, dest
 
 // MARK: General
 
-private func deleteFileAtPath(path: String) {
-    executeShellCommand("rm \(path)")
+private func deleteFileAtPath(path: String) throws {
+    try NSFileManager.defaultManager().removeItemAtPath(path)
 }
 
 private func generateCSVFromStringsFilePath(filePath: String, destinationPath: String) throws {

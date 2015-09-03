@@ -650,7 +650,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="LocalizationCSV" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -672,6 +672,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDB-Xy-0GI">
+                                <rect key="frame" x="18" y="233" width="91" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project Folder" id="PmY-kI-y0F">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xNh-XT-Y7E">
+                                <rect key="frame" x="20" y="203" width="357" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="9Uo-Rg-9Iz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="w6s-WP-g2X"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AKU-ty-x1H">
+                                <rect key="frame" x="379" y="197" width="87" height="32"/>
+                                <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7UX-ba-4UM">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="browseProjectFolderPath:" target="XfG-lQ-9wD" id="7Un-Uk-fpq"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A4C-cP-tQH">
+                                <rect key="frame" x="18" y="178" width="155" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CSVs Destination Folder" id="3sX-37-JHs">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oRG-D8-aco">
+                                <rect key="frame" x="20" y="148" width="357" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="q4l-47-Wdo">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="Fiy-YJ-yGz"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="34j-5x-mQR">
+                                <rect key="frame" x="379" y="142" width="87" height="32"/>
+                                <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PxV-yB-iG9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="browseCSVFolderPath:" target="XfG-lQ-9wD" id="l58-wy-wzr"/>
+                                </connections>
+                            </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DG3-C6-T82">
                                 <rect key="frame" x="331" y="13" width="135" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate CSVs" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="B9N-C7-L9f">
@@ -688,33 +746,38 @@ DQ
                             <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="o8c-Mp-Zd0">
                                 <rect key="frame" x="224" y="119" width="32" height="32"/>
                             </progressIndicator>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xNh-XT-Y7E">
-                                <rect key="frame" x="20" y="228" width="440" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="9Uo-Rg-9Iz">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="w6s-WP-g2X"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="xNh-XT-Y7E" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Ger-SJ-zGy"/>
+                            <constraint firstItem="QDB-Xy-0GI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="2ob-ew-i6Q"/>
+                            <constraint firstItem="34j-5x-mQR" firstAttribute="leading" secondItem="oRG-D8-aco" secondAttribute="trailing" constant="8" id="Pix-dn-qD1"/>
                             <constraint firstAttribute="trailing" secondItem="DG3-C6-T82" secondAttribute="trailing" constant="20" id="QXT-Mv-nk1"/>
-                            <constraint firstItem="DG3-C6-T82" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xNh-XT-Y7E" secondAttribute="bottom" constant="8" id="RxO-Le-TRn"/>
+                            <constraint firstItem="DG3-C6-T82" firstAttribute="top" relation="greaterThanOrEqual" secondItem="oRG-D8-aco" secondAttribute="bottom" constant="8" id="Uuw-an-Grt"/>
+                            <constraint firstItem="xNh-XT-Y7E" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="XPp-eA-G8g"/>
+                            <constraint firstItem="QDB-Xy-0GI" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Yxk-E0-MSK"/>
+                            <constraint firstAttribute="trailing" secondItem="AKU-ty-x1H" secondAttribute="trailing" constant="20" id="aoj-oS-4Cl"/>
                             <constraint firstItem="o8c-Mp-Zd0" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="bqO-Qo-sog"/>
+                            <constraint firstAttribute="trailing" secondItem="34j-5x-mQR" secondAttribute="trailing" constant="20" id="eOO-2n-LOE"/>
+                            <constraint firstItem="AKU-ty-x1H" firstAttribute="leading" secondItem="xNh-XT-Y7E" secondAttribute="trailing" constant="8" id="hDT-Fk-cNZ"/>
                             <constraint firstItem="o8c-Mp-Zd0" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="n3J-MW-yLa"/>
+                            <constraint firstItem="A4C-cP-tQH" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="neh-y7-8HT"/>
                             <constraint firstAttribute="bottom" secondItem="DG3-C6-T82" secondAttribute="bottom" constant="20" id="pP7-VM-ACI"/>
-                            <constraint firstAttribute="trailing" secondItem="xNh-XT-Y7E" secondAttribute="trailing" constant="20" id="peG-H1-mHc"/>
-                            <constraint firstItem="xNh-XT-Y7E" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="w2M-al-7oR"/>
+                            <constraint firstItem="A4C-cP-tQH" firstAttribute="top" secondItem="xNh-XT-Y7E" secondAttribute="bottom" constant="8" id="pe0-XY-sCP"/>
+                            <constraint firstItem="oRG-D8-aco" firstAttribute="top" secondItem="A4C-cP-tQH" secondAttribute="bottom" constant="8" id="rWw-aO-gBx"/>
+                            <constraint firstItem="34j-5x-mQR" firstAttribute="centerY" secondItem="oRG-D8-aco" secondAttribute="centerY" id="t00-8k-3ob"/>
+                            <constraint firstItem="xNh-XT-Y7E" firstAttribute="top" secondItem="QDB-Xy-0GI" secondAttribute="bottom" constant="8" id="ts5-KU-jYR"/>
+                            <constraint firstItem="AKU-ty-x1H" firstAttribute="centerY" secondItem="xNh-XT-Y7E" secondAttribute="centerY" id="uj9-Ci-iw2"/>
+                            <constraint firstItem="oRG-D8-aco" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="zLh-Fs-BcD"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="folderPathTextField" destination="xNh-XT-Y7E" id="QGN-cj-NnL"/>
+                        <outlet property="browseCSVFolderPathButton" destination="34j-5x-mQR" id="f5x-rT-6ib"/>
+                        <outlet property="browseProjectFolderPathButton" destination="AKU-ty-x1H" id="r16-f7-cfJ"/>
+                        <outlet property="csvFolderPathLabel" destination="A4C-cP-tQH" id="sIz-Il-JRt"/>
+                        <outlet property="csvFolderPathTextField" destination="oRG-D8-aco" id="Xl7-zg-ymR"/>
                         <outlet property="generateCSVsButton" destination="DG3-C6-T82" id="HjC-zU-06c"/>
                         <outlet property="loadingIndicator" destination="o8c-Mp-Zd0" id="V2u-OC-PQw"/>
+                        <outlet property="projectFolderPathLabel" destination="QDB-Xy-0GI" id="yGn-Aw-Uy2"/>
+                        <outlet property="projectFolderPathTextField" destination="xNh-XT-Y7E" id="6yq-eV-Gpv"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
