@@ -8,19 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		4285C7D61B9775D000A2A1DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7D51B9775D000A2A1DC /* AppDelegate.swift */; };
-		4285C7D81B9775D000A2A1DC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7D71B9775D000A2A1DC /* ViewController.swift */; };
+		4285C7D81B9775D000A2A1DC /* ToCSVsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7D71B9775D000A2A1DC /* ToCSVsViewController.swift */; };
 		4285C7DA1B9775D000A2A1DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4285C7D91B9775D000A2A1DC /* Assets.xcassets */; };
 		4285C7DD1B9775D000A2A1DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4285C7DB1B9775D000A2A1DC /* Main.storyboard */; };
 		4285C7E71B97802900A2A1DC /* CSVsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7E61B97802900A2A1DC /* CSVsGenerator.swift */; settings = {ASSET_TAGS = (); }; };
 		4285C7E91B9785FA00A2A1DC /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7E81B9785FA00A2A1DC /* Utilities.swift */; settings = {ASSET_TAGS = (); }; };
 		4285C7EB1B97AC6A00A2A1DC /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7EA1B97AC6A00A2A1DC /* CSV.swift */; settings = {ASSET_TAGS = (); }; };
 		4285C7ED1B97ADD400A2A1DC /* StringsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7EC1B97ADD400A2A1DC /* StringsFile.swift */; settings = {ASSET_TAGS = (); }; };
+		4285C7EF1B9906B900A2A1DC /* FromCSVsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7EE1B9906B900A2A1DC /* FromCSVsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4285C7D21B9775D000A2A1DC /* LocalizationCSV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationCSV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4285C7D51B9775D000A2A1DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4285C7D71B9775D000A2A1DC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4285C7D71B9775D000A2A1DC /* ToCSVsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToCSVsViewController.swift; sourceTree = "<group>"; };
 		4285C7D91B9775D000A2A1DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4285C7DC1B9775D000A2A1DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4285C7DE1B9775D000A2A1DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -28,6 +29,7 @@
 		4285C7E81B9785FA00A2A1DC /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		4285C7EA1B97AC6A00A2A1DC /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		4285C7EC1B97ADD400A2A1DC /* StringsFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsFile.swift; sourceTree = "<group>"; };
+		4285C7EE1B9906B900A2A1DC /* FromCSVsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCSVsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				4285C7D51B9775D000A2A1DC /* AppDelegate.swift */,
-				4285C7D71B9775D000A2A1DC /* ViewController.swift */,
+				4285C7D71B9775D000A2A1DC /* ToCSVsViewController.swift */,
+				4285C7EE1B9906B900A2A1DC /* FromCSVsViewController.swift */,
 				4285C7E61B97802900A2A1DC /* CSVsGenerator.swift */,
 				4285C7EA1B97AC6A00A2A1DC /* CSV.swift */,
 				4285C7EC1B97ADD400A2A1DC /* StringsFile.swift */,
@@ -142,7 +145,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4285C7D81B9775D000A2A1DC /* ViewController.swift in Sources */,
+				4285C7EF1B9906B900A2A1DC /* FromCSVsViewController.swift in Sources */,
+				4285C7D81B9775D000A2A1DC /* ToCSVsViewController.swift in Sources */,
 				4285C7E71B97802900A2A1DC /* CSVsGenerator.swift in Sources */,
 				4285C7EB1B97AC6A00A2A1DC /* CSV.swift in Sources */,
 				4285C7E91B9785FA00A2A1DC /* Utilities.swift in Sources */,

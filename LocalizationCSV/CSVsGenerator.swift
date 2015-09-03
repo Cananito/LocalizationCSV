@@ -37,6 +37,16 @@ func generateCSVsForFolderPath(folderPath: String, destinationPath: String) thro
     }
 }
 
+func updateStringsFilesForFolderPath(foldePath: String, csvsFolderPath: String) throws {
+    print("Pending")
+    // 1. Recusively navigate folderPath.
+    // 2. If we bump into a Base.lproj, gather all its contents.
+    // 3. Ignore all content that is not a .strings, .storyboard, or .xib.
+    // 4. Check if the candidate content has a .csv in csvsFolderPath.
+    // 5. If so, take each language column and put a .strings files into all locale folders.
+    // 6. Don't do it for Base if it's a .storyboard or .xib
+}
+
 // MARK: Localizable.strings
 
 private func generateCSVFromLocalizableStringsFileForProject(folderPath: String, destinationPath: String) throws {

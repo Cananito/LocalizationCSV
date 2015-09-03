@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ToCSVsViewController.swift
 //  LocalizationCSV
 //
 //  Created by Rogelio Gudino on 9/2/15.
@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class ToCSVsViewController: NSViewController {
     @IBOutlet weak var projectFolderPathLabel: NSTextField!
     @IBOutlet weak var projectFolderPathTextField: NSTextField!
     @IBOutlet weak var browseProjectFolderPathButton: NSButton!
