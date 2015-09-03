@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6198" systemVersion="14A297b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6198"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8187.4"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -641,12 +641,12 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LocalizationCSV" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
         </scene>
-        <!--Window Controller - Window-->
+        <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
@@ -667,11 +667,55 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="LocalizationCSV" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DG3-C6-T82">
+                                <rect key="frame" x="331" y="13" width="135" height="32"/>
+                                <buttonCell key="cell" type="push" title="Generate CSVs" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="B9N-C7-L9f">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="generateCSVs:" target="XfG-lQ-9wD" id="hnj-Bl-Jp0"/>
+                                </connections>
+                            </button>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="o8c-Mp-Zd0">
+                                <rect key="frame" x="224" y="119" width="32" height="32"/>
+                            </progressIndicator>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xNh-XT-Y7E">
+                                <rect key="frame" x="20" y="228" width="440" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="9Uo-Rg-9Iz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="w6s-WP-g2X"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xNh-XT-Y7E" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Ger-SJ-zGy"/>
+                            <constraint firstAttribute="trailing" secondItem="DG3-C6-T82" secondAttribute="trailing" constant="20" id="QXT-Mv-nk1"/>
+                            <constraint firstItem="DG3-C6-T82" firstAttribute="top" relation="greaterThanOrEqual" secondItem="xNh-XT-Y7E" secondAttribute="bottom" constant="8" id="RxO-Le-TRn"/>
+                            <constraint firstItem="o8c-Mp-Zd0" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="bqO-Qo-sog"/>
+                            <constraint firstItem="o8c-Mp-Zd0" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="n3J-MW-yLa"/>
+                            <constraint firstAttribute="bottom" secondItem="DG3-C6-T82" secondAttribute="bottom" constant="20" id="pP7-VM-ACI"/>
+                            <constraint firstAttribute="trailing" secondItem="xNh-XT-Y7E" secondAttribute="trailing" constant="20" id="peG-H1-mHc"/>
+                            <constraint firstItem="xNh-XT-Y7E" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="w2M-al-7oR"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="folderPathTextField" destination="xNh-XT-Y7E" id="QGN-cj-NnL"/>
+                        <outlet property="generateCSVsButton" destination="DG3-C6-T82" id="HjC-zU-06c"/>
+                        <outlet property="loadingIndicator" destination="o8c-Mp-Zd0" id="V2u-OC-PQw"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
