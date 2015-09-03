@@ -13,7 +13,7 @@ struct CSV {
     init(stringsFile: StringsFile) {
         var grid = [Row]()
         
-        let firstRow = ["Key", "English", "Comment"]
+        let firstRow = ["Key", "Base", "Comment"]
         grid.append(firstRow)
         
         for entry in stringsFile.entries {
