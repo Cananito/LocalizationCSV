@@ -7,16 +7,18 @@
 //
 
 struct CSV {
+    typealias Grid = [Row]
     typealias Row = [String]
-    var grid: [Row]
+    
+    var grid: Grid
     let name: String
     
-    private let ColumnTitleRowIndex = 0
-    private let KeyColumnIndex = 0
-    private let BaseColumnIndex = 1
+    let ColumnTitleRowIndex = 0
+    let KeyColumnIndex = 0
+    let BaseColumnIndex = 1
     
     init(baseStringsFile: StringsFile, name: String) {
-        var grid = [Row]()
+        var grid = Grid()
         
         let firstRow = ["Key", "Base", "Comment"]
         grid.append(firstRow)
@@ -31,7 +33,7 @@ struct CSV {
     }
     
     init(textRepresentation: String, name: String) {
-        var grid = [Row]()
+        var grid = Grid()
         var currentRow = Row()
         var currentValue = ""
         var foundFirstDoubleQuote = false
@@ -122,6 +124,13 @@ struct CSV {
             rowStrings.append(escapedRow.joinWithSeparator(","))
         }
         return rowStrings.joinWithSeparator("\n")
+    }
+    
+    func commentsColumnIndex() -> Int? {
+        if grid.count == 0 {
+            return nil
+        }
+        return grid[ColumnTitleRowIndex].count - 1
     }
 }
 

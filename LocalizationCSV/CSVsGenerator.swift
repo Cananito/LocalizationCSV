@@ -37,14 +37,19 @@ func generateCSVsForFolderPath(folderPath: String, destinationPath: String) thro
     }
 }
 
-func updateStringsFilesForFolderPath(foldePath: String, csvsFolderPath: String) throws {
-    print("Pending")
-    // 1. Recusively navigate folderPath.
-    // 2. If we bump into a Base.lproj, gather all its contents.
-    // 3. Ignore all content that is not a .strings, .storyboard, or .xib.
-    // 4. Check if the candidate content has a .csv in csvsFolderPath.
-    // 5. If so, take each language column and put a .strings files into all locale folders.
-    // 6. Don't do it for Base if it's a .storyboard or .xib
+func updateStringsFilesForFolderPath(folderPath: String, csvsFolderPath: String) throws {
+    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
+    for content in contents {
+        if content == "Base.lproj" {
+            let baseFolderPath = folderPath.stringByAppendingFormat("/%@", content)
+            try updateStringsFilesForBaseFolderPath(baseFolderPath, folderPath: folderPath, csvsFolderPath: csvsFolderPath)
+        }
+        
+        let path = folderPath.stringByAppendingFormat("/%@", content)
+        if isPathDirectory(path) {
+            try updateStringsFilesForFolderPath(path, csvsFolderPath: csvsFolderPath)
+        }
+    }
 }
 
 // MARK: Localizable.strings
@@ -91,6 +96,50 @@ private func generateCSVsFromInterfaceBuilderBaseFolder(folderPath: String, dest
         executeShellCommand("ibtool --export-strings-file \(escapedDestination) \(escapedPath)")
         try generateCSVFromStringsFilePath(destination, destinationPath: destinationPath)
         try deleteFileAtPath(destination)
+    }
+}
+
+// MARK: CSV to Strings
+
+func updateStringsFilesForBaseFolderPath(baseFolderPath: String, folderPath: String, csvsFolderPath: String) throws {
+    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(baseFolderPath)
+    for content in contents {
+        if !content.hasSuffix(".storyboard") && !content.hasSuffix(".xib") && !content.hasSuffix(".strings") {
+            continue
+        }
+        
+        let fileName = (content as NSString).stringByDeletingPathExtension
+        if content.hasSuffix(".storyboard") || content.hasSuffix(".xib") {
+            try updateStringsFilesForFile(fileName, folderPath: folderPath, includeBaseLocalization: false, csvsFolderPath: csvsFolderPath)
+        } else {
+            try updateStringsFilesForFile(fileName, folderPath: folderPath, includeBaseLocalization: true, csvsFolderPath: csvsFolderPath)
+        }
+    }
+}
+
+func updateStringsFilesForFile(fileName: String, folderPath: String, includeBaseLocalization: Bool, csvsFolderPath: String) throws {
+    if let csvFilePath = try csvFilePathForFileName(fileName, inDestinationPath: csvsFolderPath) {
+        let csvFileContents = try NSString(contentsOfFile: csvFilePath, usedEncoding: nil) as String
+        let csv = CSV(textRepresentation: csvFileContents, name: fileName)
+        
+        let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
+        for content in contents {
+            if !includeBaseLocalization && content.hasPrefix("Base") {
+                continue
+            }
+            
+            if !content.hasSuffix(".lproj") {
+                continue
+            }
+            
+            var language = "?"
+            if let l = localeFolderAndLanguageRelation[content] {
+                language = l
+            }
+            let stringsFile = StringsFile(csv: csv, language: language)
+            let contentPath = folderPath.stringByAppendingFormat("/%@", content)
+            try persistStringsFile(stringsFile, fileName: fileName, destiantionPath: contentPath)
+        }
     }
 }
 
@@ -155,6 +204,12 @@ private func persistCSV(csv: CSV, destinationPath: String) throws {
     let csvText = csv.textRepresentation() as NSString
     let csvFilePath = destinationPath.stringByAppendingFormat("/%@.csv", csv.name)
     try csvText.writeToFile(csvFilePath, atomically: true, encoding: NSUTF8StringEncoding)
+}
+
+private func persistStringsFile(stringsFile: StringsFile, fileName: String, destiantionPath: String) throws {
+    let stringsFileText = stringsFile.textRepresentation()
+    let stringsFilePath = destiantionPath.stringByAppendingFormat("/%@.strings", fileName)
+    try stringsFileText.writeToFile(stringsFilePath, atomically: true, encoding: NSUTF8StringEncoding)
 }
 
 private func csvFilePathForFileName(fileName: String, inDestinationPath: String) throws -> String? {

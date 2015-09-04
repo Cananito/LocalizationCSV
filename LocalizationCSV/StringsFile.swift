@@ -19,9 +19,41 @@ class StringsFile {
         populateEntriesFromTextRepresentation(textRepresentation)
     }
     
+    init(csv: CSV, language: String) {
+        if csv.grid.count == 0 {
+            return
+        }
+        
+        let columnTitleRow = csv.grid[csv.ColumnTitleRowIndex]
+        var localeColumnIndex: Int?
+        for (index, value) in columnTitleRow.enumerate() {
+            if value == language {
+                localeColumnIndex = index
+                break
+            }
+        }
+        
+        guard let _ = localeColumnIndex else {
+            return
+        }
+        
+        for var index = 1; index < csv.grid.count; index++ {
+            let row = csv.grid[index]
+            let key = row[csv.KeyColumnIndex]
+            let value = row[localeColumnIndex!]
+            let comment = row[csv.commentsColumnIndex()!]
+            let entry = StringsFileEntry(key: key, value: value, comment: comment)
+            entries.append(entry)
+        }
+    }
+    
     func textRepresentation() -> String {
-        // TODO: Implement this
-        return "StringsFile"
+        var entryStrings = [String]()
+        for entry in entries {
+            let entryString = "/* " + entry.comment + " */\n" + "\"" + entry.key + "\" = \"" + entry.value + "\";"
+            entryStrings.append(entryString)
+        }
+        return "\n" + entryStrings.joinWithSeparator("\n\n") + "\n"
     }
     
     func entryForKey(key: String) -> StringsFileEntry? {
