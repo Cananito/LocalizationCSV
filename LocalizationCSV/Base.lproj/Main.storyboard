@@ -787,7 +787,7 @@ DQ
         <!--Tab View Controller-->
         <scene sceneID="qJ4-St-TgE">
             <objects>
-                <tabViewController selectedTabViewItemIndex="1" id="E4a-t6-BTd" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" id="E4a-t6-BTd" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem id="O1p-MT-KYu"/>
                         <tabViewItem id="JEO-UZ-Qpa"/>
