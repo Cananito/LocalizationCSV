@@ -133,26 +133,3 @@ struct CSV {
         return grid[ColumnTitleRowIndex].count - 1
     }
 }
-
-extension String {
-    func csvEscaped() -> String {
-        if self.containsString("\"") {
-            var escapedCharacters = [Character]()
-            escapedCharacters.append("\"")
-            for character in self.characters {
-                if character == "\"" {
-                    escapedCharacters.append("\"")
-                    escapedCharacters.append(character)
-                } else {
-                    escapedCharacters.append(character)
-                }
-            }
-            escapedCharacters.append("\"")
-            return String(escapedCharacters)
-        } else if self.containsString(",") || self.containsString("\n") {
-            return "\"" + self + "\""
-        }
-        
-        return self
-    }
-}

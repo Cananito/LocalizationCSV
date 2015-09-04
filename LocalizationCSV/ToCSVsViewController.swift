@@ -84,12 +84,7 @@ class ToCSVsViewController: NSViewController {
     // MARK: Private Methods
     
     private func updateGenerateCSVsButtonEnabledState() {
-        generateCSVsButton.enabled = validateTextFieldPath(projectFolderPathTextField) && validateTextFieldPath(csvFolderPathTextField)
-    }
-    
-    private func validateTextFieldPath(textField: NSTextField) -> Bool {
-        let path = textField.stringValue
-        return isPathDirectory(path)
+        generateCSVsButton.enabled = isTextFieldValueADirectoryPath(projectFolderPathTextField) && isTextFieldValueADirectoryPath(csvFolderPathTextField)
     }
     
     private func showLoadingUI() {

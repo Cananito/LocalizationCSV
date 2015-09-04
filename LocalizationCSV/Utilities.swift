@@ -6,7 +6,7 @@
 //  Copyright © 2015 Rogelio Gudino. All rights reserved.
 //
 
-import Foundation
+import Cocoa
 
 public func outputStringFromLaunchPath(launchPath: String, arguments: Array<String>) -> String {
     let task = NSTask()
@@ -33,6 +33,34 @@ public func isPathDirectory(path: String) -> Bool {
         return false
     }
     return isDirectory.boolValue
+}
+
+public func isTextFieldValueADirectoryPath(textField: NSTextField) -> Bool {
+    let path = textField.stringValue
+    return isPathDirectory(path)
+}
+
+extension String {
+    func csvEscaped() -> String {
+        if self.containsString("\"") {
+            var escapedCharacters = [Character]()
+            escapedCharacters.append("\"")
+            for character in self.characters {
+                if character == "\"" {
+                    escapedCharacters.append("\"")
+                    escapedCharacters.append(character)
+                } else {
+                    escapedCharacters.append(character)
+                }
+            }
+            escapedCharacters.append("\"")
+            return String(escapedCharacters)
+        } else if self.containsString(",") || self.containsString("\n") {
+            return "\"" + self + "\""
+        }
+        
+        return self
+    }
 }
 
 public extension NSDateFormatter {

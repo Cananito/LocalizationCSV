@@ -73,12 +73,7 @@ class FromCSVsViewController: NSViewController {
     // MARK: Private Methods
     
     private func updateUpdateStringsFilesButtonEnabledState() {
-        updateStringsFilesButton.enabled = validateTextFieldPath(projectFolderPathTextField) && validateTextFieldPath(csvFolderPathTextField)
-    }
-    
-    private func validateTextFieldPath(textField: NSTextField) -> Bool {
-        let path = textField.stringValue
-        return isPathDirectory(path)
+        updateStringsFilesButton.enabled = isTextFieldValueADirectoryPath(projectFolderPathTextField) && isTextFieldValueADirectoryPath(csvFolderPathTextField)
     }
     
     private func showLoadingUI() {
