@@ -13,6 +13,7 @@ public enum Error: ErrorType {
 }
 
 private let localeFolderAndLanguageRelation = [
+    "Base.lproj" : "Base",
     "en-CA.lproj" : "English-Canada",
     "en-US.lproj" : "English-USA",
     "es-MX.lproj" : "Spanish-Mexico",
