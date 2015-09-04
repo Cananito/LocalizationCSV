@@ -10,6 +10,7 @@ import Foundation
 
 public enum Error: ErrorType {
     case DestinationFolderAlreadyExists(message: String)
+    case FailedToGenerateStringsFile(message: String)
 }
 
 private let localeFolderAndLanguageRelation = [
@@ -21,21 +22,17 @@ private let localeFolderAndLanguageRelation = [
 ]
 
 func generateCSVsForFolderPath(folderPath: String, destinationPath: String) throws {
-    do {
-        let folderName = NSDateFormatter.nowDateString()
-        let destinationPath = destinationPath + "/" + folderName
-        if NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
-            throw Error.DestinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
-        } else {
-            try NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
-        }
-        
-        try generateCSVFromLocalizableStringsFileForProject(folderPath, destinationPath: destinationPath)
-        try generateCSVsFromInterfaceBuilderFiles(folderPath, destinationPath: destinationPath)
-        try appendExistingTranslationsFromFolder(folderPath, destinationPath: destinationPath)
-    } catch {
-        print("\(error)")
+    let folderName = NSDateFormatter.nowDateString()
+    let destinationPath = destinationPath + "/" + folderName
+    if NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
+        throw Error.DestinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
+    } else {
+        try NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
     }
+    
+    try generateCSVFromLocalizableStringsFileForProject(folderPath, destinationPath: destinationPath)
+    try generateCSVsFromInterfaceBuilderFiles(folderPath, destinationPath: destinationPath)
+    try appendExistingTranslationsFromFolder(folderPath, destinationPath: destinationPath)
 }
 
 func updateStringsFilesForFolderPath(folderPath: String, csvsFolderPath: String) throws {
@@ -60,6 +57,11 @@ private func generateCSVFromLocalizableStringsFileForProject(folderPath: String,
     executeShellCommand("find \(folderPath) -name \"*.m\" -print0 | xargs -0 genstrings -o \(destinationPath)")
     
     let tempLocalizableStringsFile = destinationPath + "/Localizable.strings"
+    
+    if NSFileManager.defaultManager().fileExistsAtPath(tempLocalizableStringsFile) == false {
+        throw Error.FailedToGenerateStringsFile(message: "Failed to generate the Localizable.strings file.")
+    }
+    
     try generateCSVFromStringsFilePath(tempLocalizableStringsFile, destinationPath: destinationPath)
     try deleteFileAtPath(tempLocalizableStringsFile)
 }

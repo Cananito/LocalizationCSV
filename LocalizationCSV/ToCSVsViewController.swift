@@ -75,6 +75,8 @@ class ToCSVsViewController: NSViewController {
                 self.finishCSVGenerationWithErrorMessage(nil)
             } catch Error.DestinationFolderAlreadyExists(let message) {
                 self.finishCSVGenerationWithErrorMessage(message)
+            } catch Error.FailedToGenerateStringsFile(let message) {
+                self.finishCSVGenerationWithErrorMessage(message)
             } catch {
                 self.finishCSVGenerationWithErrorMessage("Something went wrong. Please go to https://github.com/Cananito/LocalizationCSV/issues and submit your issue with all the possible information about how you got this error.")
             }
