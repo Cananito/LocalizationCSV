@@ -29,7 +29,7 @@ public func executeShellCommand(command: String) -> String {
 
 public func isPathDirectory(path: String) -> Bool {
     var isDirectory = ObjCBool(false)
-    if NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory:&isDirectory) == false {
+    if NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: &isDirectory) == false {
         return false
     }
     return isDirectory.boolValue

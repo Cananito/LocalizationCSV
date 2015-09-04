@@ -42,7 +42,13 @@ struct CSV {
         let characters = Array(textRepresentation.characters)
         
         for var index = 0; index < characters.count; index++ {
-            let character = characters[index]
+            let character: Character
+            if characters[index] == "\r\n" {
+                character = "\n"
+            } else {
+                character = characters[index]
+            }
+            
             switch (character, foundFirstDoubleQuote, foundSecondDoubleQuote) {
             case (",", true, true):
                 currentRow.append(currentValue)
