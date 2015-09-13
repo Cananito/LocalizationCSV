@@ -32,7 +32,7 @@ func localeDisplayNameForFolderName(folderName: String) throws -> String? {
     }
     
     var displayName: String?
-    while sqlite3_step(statement) == SQLITE_ROW {
+    if sqlite3_step(statement) == SQLITE_ROW {
         let displayNameChars = sqlite3_column_text(statement, 0)
         if displayNameChars != nil {
             displayName = String.fromCString(UnsafePointer<Int8>(displayNameChars))
