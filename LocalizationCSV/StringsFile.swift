@@ -12,11 +12,39 @@ struct StringsFileEntry {
     let comment: String
 }
 
-class StringsFile {
+struct StringsFile {
     private(set) var entries = [StringsFileEntry]()
     
     init(textRepresentation: String) {
-        populateEntriesFromTextRepresentation(textRepresentation)
+        var entries = [StringsFileEntry]()
+        let lines = textRepresentation.componentsSeparatedByString("\n")
+        var currentComment: String?
+        var currentKeyValue: (key: String, value: String)?
+        for line in lines {
+            if line.isEmpty {
+                continue
+            }
+            
+            if line.hasPrefix("/*") {
+                currentComment = removeCommentSyntaxFromLine(line)
+            } else if line.hasPrefix("\"") {
+                currentKeyValue = keyValueFromLine(line)
+            }
+            
+            if let keyValue = currentKeyValue, comment = currentComment {
+                let entry = StringsFileEntry(key: keyValue.key, value: keyValue.value, comment: comment)
+                entries.append(entry)
+                currentComment = nil
+                currentKeyValue = nil
+            } else if let keyValue = currentKeyValue {
+                let entry = StringsFileEntry(key: keyValue.key, value: keyValue.value, comment: "")
+                entries.append(entry)
+                currentComment = nil
+                currentKeyValue = nil
+            }
+        }
+        
+        self.entries = entries
     }
     
     init(csv: CSV, language: String) {
@@ -66,38 +94,6 @@ class StringsFile {
     }
     
     // MARK: Private Methods
-    
-    private func populateEntriesFromTextRepresentation(textRepresentation: String) {
-        var entries = [StringsFileEntry]()
-        let lines = textRepresentation.componentsSeparatedByString("\n")
-        var currentComment: String?
-        var currentKeyValue: (key: String, value: String)?
-        for line in lines {
-            if line.isEmpty {
-                continue
-            }
-            
-            if line.hasPrefix("/*") {
-                currentComment = removeCommentSyntaxFromLine(line)
-            } else if line.hasPrefix("\"") {
-                currentKeyValue = keyValueFromLine(line)
-            }
-            
-            if let keyValue = currentKeyValue, comment = currentComment {
-                let entry = StringsFileEntry(key: keyValue.key, value: keyValue.value, comment: comment)
-                entries.append(entry)
-                currentComment = nil
-                currentKeyValue = nil
-            } else if let keyValue = currentKeyValue {
-                let entry = StringsFileEntry(key: keyValue.key, value: keyValue.value, comment: "")
-                entries.append(entry)
-                currentComment = nil
-                currentKeyValue = nil
-            }
-        }
-        
-        self.entries = entries
-    }
     
     private func removeCommentSyntaxFromLine(line: String) -> String {
         let startAdvanceBy: Int
