@@ -830,6 +830,9 @@ DQ
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="gxb-9v-4XY" id="XRB-bQ-sJc"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X6u-G2-EVZ">
                                 <rect key="frame" x="368" y="197" width="98" height="32"/>
@@ -856,6 +859,9 @@ DQ
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="gxb-9v-4XY" id="QXe-lg-ewu"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mb3-Cn-2zh">
                                 <rect key="frame" x="368" y="142" width="98" height="32"/>
