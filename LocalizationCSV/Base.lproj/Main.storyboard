@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8187.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -664,10 +664,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--To CSVs-->
+        <!--LocalizationCSV View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="To CSVs" id="XfG-lQ-9wD" customClass="ToCSVsViewController" customModule="LocalizationCSV" sceneMemberID="viewController">
+                <viewController title="To CSVs" id="XfG-lQ-9wD" customClass="LocalizationCSVViewController" customModule="LocalizationCSV" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -688,7 +688,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="w6s-WP-g2X"/>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="AJN-Pt-wkJ"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AKU-ty-x1H">
@@ -698,7 +698,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="browseProjectFolderPath:" target="XfG-lQ-9wD" id="7Un-Uk-fpq"/>
+                                    <action selector="browseTopFolderPath:" target="XfG-lQ-9wD" id="gGZ-Jz-iee"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A4C-cP-tQH">
@@ -717,7 +717,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="Fiy-YJ-yGz"/>
+                                    <outlet property="delegate" destination="XfG-lQ-9wD" id="xDf-sB-A9b"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="34j-5x-mQR">
@@ -727,7 +727,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="browseCSVFolderPath:" target="XfG-lQ-9wD" id="l58-wy-wzr"/>
+                                    <action selector="browseBottomFolderPath:" target="XfG-lQ-9wD" id="a6o-yK-nna"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DG3-C6-T82">
@@ -740,7 +740,7 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="generateCSVs:" target="XfG-lQ-9wD" id="hnj-Bl-Jp0"/>
+                                    <action selector="execute:" target="XfG-lQ-9wD" id="8r8-7H-JGg"/>
                                 </connections>
                             </button>
                             <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="o8c-Mp-Zd0">
@@ -770,17 +770,23 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="browseCSVFolderPathButton" destination="34j-5x-mQR" id="f5x-rT-6ib"/>
-                        <outlet property="browseProjectFolderPathButton" destination="AKU-ty-x1H" id="r16-f7-cfJ"/>
-                        <outlet property="csvFolderPathLabel" destination="A4C-cP-tQH" id="sIz-Il-JRt"/>
-                        <outlet property="csvFolderPathTextField" destination="oRG-D8-aco" id="Xl7-zg-ymR"/>
-                        <outlet property="generateCSVsButton" destination="DG3-C6-T82" id="HjC-zU-06c"/>
-                        <outlet property="loadingIndicator" destination="o8c-Mp-Zd0" id="V2u-OC-PQw"/>
-                        <outlet property="projectFolderPathLabel" destination="QDB-Xy-0GI" id="yGn-Aw-Uy2"/>
-                        <outlet property="projectFolderPathTextField" destination="xNh-XT-Y7E" id="6yq-eV-Gpv"/>
+                        <outlet property="bottomFolderPathLabel" destination="A4C-cP-tQH" id="gs8-Bi-tjj"/>
+                        <outlet property="bottomFolderPathTextField" destination="oRG-D8-aco" id="rKM-Ck-nuc"/>
+                        <outlet property="browseBottomFolderPathButton" destination="34j-5x-mQR" id="4Ok-NC-6W1"/>
+                        <outlet property="browseTopFolderPathButton" destination="AKU-ty-x1H" id="nkL-Rx-6rl"/>
+                        <outlet property="executeButton" destination="DG3-C6-T82" id="5WT-0j-pzY"/>
+                        <outlet property="loadingIndicator" destination="o8c-Mp-Zd0" id="ufe-sG-noT"/>
+                        <outlet property="localizationCSVUI" destination="O3K-Zu-lzi" id="pi6-jK-JDh"/>
+                        <outlet property="topFolderPathLabel" destination="QDB-Xy-0GI" id="Cf6-Od-Fym"/>
+                        <outlet property="topFolderPathTextField" destination="xNh-XT-Y7E" id="CRe-ou-XJA"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="O3K-Zu-lzi" customClass="ToCSVsUI" customModule="LocalizationCSV" customModuleProvider="target">
+                    <connections>
+                        <outlet property="localizationCSVViewController" destination="XfG-lQ-9wD" id="T48-vA-GXR"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="688" y="503"/>
         </scene>
@@ -807,10 +813,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="75" y="721"/>
         </scene>
-        <!--From CSVs-->
+        <!--LocalizationCSV View Controller-->
         <scene sceneID="0Qm-es-iwZ">
             <objects>
-                <viewController title="From CSVs" id="gxb-9v-4XY" customClass="FromCSVsViewController" customModule="LocalizationCSV" sceneMemberID="viewController">
+                <viewController title="From CSVs" id="gxb-9v-4XY" customClass="LocalizationCSVViewController" customModule="LocalizationCSV" sceneMemberID="viewController">
                     <view key="view" id="Cqy-UK-TX8">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -831,7 +837,7 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <outlet property="delegate" destination="gxb-9v-4XY" id="XRB-bQ-sJc"/>
+                                    <outlet property="delegate" destination="gxb-9v-4XY" id="ZrK-hT-2zX"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X6u-G2-EVZ">
@@ -841,7 +847,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="browseCSVFolderPath:" target="gxb-9v-4XY" id="ozW-Wp-tey"/>
+                                    <action selector="browseTopFolderPath:" target="gxb-9v-4XY" id="s9A-bN-hSW"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bcB-d6-b1G">
@@ -860,7 +866,7 @@ DQ
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <outlet property="delegate" destination="gxb-9v-4XY" id="QXe-lg-ewu"/>
+                                    <outlet property="delegate" destination="gxb-9v-4XY" id="t81-cf-scW"/>
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mb3-Cn-2zh">
@@ -870,7 +876,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="browseProjectFolderPath:" target="gxb-9v-4XY" id="6fu-Oo-9Sb"/>
+                                    <action selector="browseBottomFolderPath:" target="gxb-9v-4XY" id="o8k-42-3jn"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8T-kV-4n9">
@@ -883,7 +889,7 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="updateStringsFiles:" target="gxb-9v-4XY" id="dm5-1v-ONL"/>
+                                    <action selector="execute:" target="gxb-9v-4XY" id="XJe-nZ-X5k"/>
                                 </connections>
                             </button>
                             <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="GUT-0D-DCG">
@@ -913,17 +919,23 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="browseCSVFolderPathButton" destination="X6u-G2-EVZ" id="Uwl-Oa-e4S"/>
-                        <outlet property="browseProjectFolderPathButton" destination="mb3-Cn-2zh" id="DJu-3I-vv1"/>
-                        <outlet property="csvFolderPathLabel" destination="u6I-ju-m8g" id="IBg-gw-Uwp"/>
-                        <outlet property="csvFolderPathTextField" destination="hSH-6g-D0v" id="Y5N-dv-2YE"/>
-                        <outlet property="loadingIndicator" destination="GUT-0D-DCG" id="aV8-2I-WWl"/>
-                        <outlet property="projectFolderPathLabel" destination="bcB-d6-b1G" id="pdv-r1-UFt"/>
-                        <outlet property="projectFolderPathTextField" destination="Mo0-nG-I8N" id="b2H-Uu-RZ9"/>
-                        <outlet property="updateStringsFilesButton" destination="p8T-kV-4n9" id="3Ib-mi-8Fe"/>
+                        <outlet property="bottomFolderPathLabel" destination="bcB-d6-b1G" id="xvt-jU-g1X"/>
+                        <outlet property="bottomFolderPathTextField" destination="Mo0-nG-I8N" id="Gko-MS-tej"/>
+                        <outlet property="browseBottomFolderPathButton" destination="mb3-Cn-2zh" id="Zlg-Ra-oQi"/>
+                        <outlet property="browseTopFolderPathButton" destination="X6u-G2-EVZ" id="xwi-d2-3QF"/>
+                        <outlet property="executeButton" destination="p8T-kV-4n9" id="bby-4J-bVJ"/>
+                        <outlet property="loadingIndicator" destination="GUT-0D-DCG" id="cEc-aI-vcG"/>
+                        <outlet property="localizationCSVUI" destination="5O3-zv-Pym" id="gcG-4Q-X5L"/>
+                        <outlet property="topFolderPathLabel" destination="u6I-ju-m8g" id="GTn-1t-z2N"/>
+                        <outlet property="topFolderPathTextField" destination="hSH-6g-D0v" id="flM-8h-Mtu"/>
                     </connections>
                 </viewController>
                 <customObject id="ar0-8z-6rL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="5O3-zv-Pym" customClass="FromCSVsUI" customModule="LocalizationCSV" customModuleProvider="target">
+                    <connections>
+                        <outlet property="localizationCSVViewController" destination="gxb-9v-4XY" id="69a-3L-oUA"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="688" y="833"/>
         </scene>
