@@ -8,18 +8,10 @@
 
 import Foundation
 
-public enum Error: ErrorType {
+enum Error: ErrorType {
     case DestinationFolderAlreadyExists(message: String)
     case FailedToGenerateStringsFile(message: String)
 }
-
-private let localeFolderAndLanguageRelation = [
-    "Base.lproj" : "Base",
-    "en-CA.lproj" : "English-Canada",
-    "en-US.lproj" : "English-USA",
-    "es-MX.lproj" : "Spanish-Mexico",
-    "fr-CA.lproj" : "French-Canada"
-]
 
 func generateCSVsForFolderPath(folderPath: String, destinationPath: String) throws {
     let folderName = NSDateFormatter.nowDateString()
@@ -136,7 +128,7 @@ func updateStringsFilesForFile(fileName: String, folderPath: String, includeBase
             }
             
             var language = "?"
-            if let l = localeFolderAndLanguageRelation[content] {
+            if let l = try localeDisplayNameForFolderName(content) {
                 language = l
             }
             let stringsFile = StringsFile(csv: csv, language: language)
@@ -177,7 +169,7 @@ private func appendExistingTranslationsFromLocaleFolder(folderPath: String, dest
             let stringsFile = StringsFile(textRepresentation: stringsFileContents)
             
             var language = "?"
-            if let l = localeFolderAndLanguageRelation[(folderPath as NSString).lastPathComponent] {
+            if let l = try localeDisplayNameForFolderName((folderPath as NSString).lastPathComponent) {
                 language = l
             }
             

@@ -18,6 +18,7 @@
 		4285C7EF1B9906B900A2A1DC /* FromCSVsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7EE1B9906B900A2A1DC /* FromCSVsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		42A206EF1BA5155100F8D2E2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A206EE1BA5155100F8D2E2 /* libsqlite3.0.tbd */; };
 		42A206F21BA5192500F8D2E2 /* LocalizationCSV.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */; settings = {ASSET_TAGS = (); }; };
+		42A206F61BA51E6300F8D2E2 /* LocaleDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206F51BA51E6300F8D2E2 /* LocaleDatabase.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		42A206EE1BA5155100F8D2E2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		42A206F01BA515AD00F8D2E2 /* LocalizationCSV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalizationCSV-Bridging-Header.h"; sourceTree = "<group>"; };
 		42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LocalizationCSV.sqlite; sourceTree = "<group>"; };
+		42A206F51BA51E6300F8D2E2 /* LocaleDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleDatabase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				4285C7E61B97802900A2A1DC /* CSVsGenerator.swift */,
 				4285C7EA1B97AC6A00A2A1DC /* CSV.swift */,
 				4285C7EC1B97ADD400A2A1DC /* StringsFile.swift */,
+				42A206F51BA51E6300F8D2E2 /* LocaleDatabase.swift */,
 				4285C7E81B9785FA00A2A1DC /* Utilities.swift */,
 				4285C7DB1B9775D000A2A1DC /* Main.storyboard */,
 				42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */,
@@ -159,6 +162,7 @@
 				4285C7D81B9775D000A2A1DC /* ToCSVsViewController.swift in Sources */,
 				4285C7E71B97802900A2A1DC /* CSVsGenerator.swift in Sources */,
 				4285C7EB1B97AC6A00A2A1DC /* CSV.swift in Sources */,
+				42A206F61BA51E6300F8D2E2 /* LocaleDatabase.swift in Sources */,
 				4285C7E91B9785FA00A2A1DC /* Utilities.swift in Sources */,
 				4285C7ED1B97ADD400A2A1DC /* StringsFile.swift in Sources */,
 				4285C7D61B9775D000A2A1DC /* AppDelegate.swift in Sources */,
