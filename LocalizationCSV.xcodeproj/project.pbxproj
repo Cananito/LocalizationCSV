@@ -16,6 +16,7 @@
 		4285C7EB1B97AC6A00A2A1DC /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7EA1B97AC6A00A2A1DC /* CSV.swift */; settings = {ASSET_TAGS = (); }; };
 		4285C7ED1B97ADD400A2A1DC /* StringsFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7EC1B97ADD400A2A1DC /* StringsFile.swift */; settings = {ASSET_TAGS = (); }; };
 		4285C7EF1B9906B900A2A1DC /* FromCSVsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7EE1B9906B900A2A1DC /* FromCSVsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		42A206EF1BA5155100F8D2E2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A206EE1BA5155100F8D2E2 /* libsqlite3.0.tbd */; };
 		42A206F21BA5192500F8D2E2 /* LocalizationCSV.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,8 @@
 		4285C7EA1B97AC6A00A2A1DC /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		4285C7EC1B97ADD400A2A1DC /* StringsFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringsFile.swift; sourceTree = "<group>"; };
 		4285C7EE1B9906B900A2A1DC /* FromCSVsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCSVsViewController.swift; sourceTree = "<group>"; };
+		42A206EE1BA5155100F8D2E2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		42A206F01BA515AD00F8D2E2 /* LocalizationCSV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalizationCSV-Bridging-Header.h"; sourceTree = "<group>"; };
 		42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LocalizationCSV.sqlite; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42A206EF1BA5155100F8D2E2 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +79,8 @@
 				42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */,
 				4285C7D91B9775D000A2A1DC /* Assets.xcassets */,
 				4285C7DE1B9775D000A2A1DC /* Info.plist */,
+				42A206F01BA515AD00F8D2E2 /* LocalizationCSV-Bridging-Header.h */,
+				42A206EE1BA5155100F8D2E2 /* libsqlite3.0.tbd */,
 			);
 			path = LocalizationCSV;
 			sourceTree = "<group>";
@@ -262,6 +268,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cananito.LocalizationCSV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LocalizationCSV/LocalizationCSV-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -274,6 +281,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cananito.LocalizationCSV;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LocalizationCSV/LocalizationCSV-Bridging-Header.h";
 			};
 			name = Release;
 		};
