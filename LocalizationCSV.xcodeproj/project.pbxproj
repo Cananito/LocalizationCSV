@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		422F76F81BA7158A00F5D4AF /* ToCSVsUISetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422F76F71BA7158A00F5D4AF /* ToCSVsUISetup.swift */; settings = {ASSET_TAGS = (); }; };
 		4285C7D61B9775D000A2A1DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4285C7D51B9775D000A2A1DC /* AppDelegate.swift */; };
 		4285C7DA1B9775D000A2A1DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4285C7D91B9775D000A2A1DC /* Assets.xcassets */; };
 		4285C7DD1B9775D000A2A1DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4285C7DB1B9775D000A2A1DC /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		422F76F71BA7158A00F5D4AF /* ToCSVsUISetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToCSVsUISetup.swift; sourceTree = "<group>"; };
 		4285C7D21B9775D000A2A1DC /* LocalizationCSV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationCSV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4285C7D51B9775D000A2A1DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4285C7D91B9775D000A2A1DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				4285C7D51B9775D000A2A1DC /* AppDelegate.swift */,
 				42A206F71BA618A000F8D2E2 /* LocalizationCSVViewController.swift */,
+				422F76F71BA7158A00F5D4AF /* ToCSVsUISetup.swift */,
 				42A206F91BA61E0D00F8D2E2 /* ToCSVsExecutor.swift */,
 				42A206FB1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift */,
 				4285C7E61B97802900A2A1DC /* CSVsGenerator.swift */,
@@ -164,6 +167,7 @@
 				42A206FC1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift in Sources */,
 				42A206FA1BA61E0D00F8D2E2 /* ToCSVsExecutor.swift in Sources */,
 				4285C7E71B97802900A2A1DC /* CSVsGenerator.swift in Sources */,
+				422F76F81BA7158A00F5D4AF /* ToCSVsUISetup.swift in Sources */,
 				4285C7EB1B97AC6A00A2A1DC /* CSV.swift in Sources */,
 				42A206F61BA51E6300F8D2E2 /* LocaleDatabase.swift in Sources */,
 				4285C7E91B9785FA00A2A1DC /* Utilities.swift in Sources */,

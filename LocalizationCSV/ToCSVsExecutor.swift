@@ -9,21 +9,9 @@
 import Cocoa
 
 class ToCSVsExecuter : NSObject, LocalizationCSVExecutor {
-    @IBOutlet weak var localizationCSVViewController: LocalizationCSVViewController!
-    
-    func setup() {
+    func execute(topFolderPathTextField topFolderPathTextField: NSTextField, bottomFolderPathTextField: NSTextField, finishWithErrorMessage: String? -> ()) {
         do {
-            let downloadsFolderPathURL = try NSFileManager.defaultManager().URLForDirectory(.DownloadsDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
-            let downloadsFolderPath = downloadsFolderPathURL.relativePath!
-            localizationCSVViewController.bottomFolderPathTextField.stringValue = downloadsFolderPath
-        } catch {
-            print("\(error)")
-        }
-    }
-    
-    func execute(finishWithErrorMessage: String? -> ()) {
-        do {
-            try generateCSVsForFolderPath(localizationCSVViewController.topFolderPathTextField.stringValue, destinationPath: localizationCSVViewController.bottomFolderPathTextField!.stringValue)
+            try generateCSVsForFolderPath(topFolderPathTextField.stringValue, destinationPath: bottomFolderPathTextField.stringValue)
             finishWithErrorMessage(nil)
         } catch Error.DestinationFolderAlreadyExists(let message) {
             finishWithErrorMessage(message)

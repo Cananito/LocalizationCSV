@@ -8,12 +8,15 @@
 
 import Cocoa
 
-@objc protocol LocalizationCSVExecutor {
+@objc protocol LocalizationCSVUISetup {
     weak var localizationCSVViewController: LocalizationCSVViewController! { get set }
-    optional func setup()
+    func setup()
+}
+
+@objc protocol LocalizationCSVExecutor {
     // TODO: Switch to `func execute() throws` to move duplicated error handling to the execute(sender:) method.
     // Can't do this because of a Swift bug.
-    func execute(finishWithErrorMessage: String? -> ())
+    func execute(topFolderPathTextField topFolderPathTextField: NSTextField, bottomFolderPathTextField: NSTextField, finishWithErrorMessage: String? -> ())
 }
 
 class LocalizationCSVViewController : NSViewController {
@@ -29,12 +32,13 @@ class LocalizationCSVViewController : NSViewController {
     @IBOutlet weak var loadingIndicator: NSProgressIndicator!
     
     @IBOutlet var localizationCSVExecutor: LocalizationCSVExecutor!
+    @IBOutlet var localizationCSVUISetup: LocalizationCSVUISetup?
     
     // MARK: Overriden Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizationCSVExecutor.setup?()
+        localizationCSVUISetup?.setup()
     }
     
     override func controlTextDidChange(obj: NSNotification) {
@@ -54,7 +58,7 @@ class LocalizationCSVViewController : NSViewController {
     @IBAction func execute(sender: AnyObject!) {
         showLoadingUI()
         NSOperationQueue().addOperationWithBlock { [unowned self] () -> Void in
-            self.localizationCSVExecutor.execute(self.finishExecuteActionWithErrorMessage)
+            self.localizationCSVExecutor.execute(topFolderPathTextField: self.topFolderPathTextField, bottomFolderPathTextField: self.bottomFolderPathTextField, finishWithErrorMessage: self.finishExecuteActionWithErrorMessage)
         }
     }
     

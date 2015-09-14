@@ -9,11 +9,9 @@
 import Cocoa
 
 class FromCSVsUI : NSObject, LocalizationCSVExecutor {
-    @IBOutlet weak var localizationCSVViewController: LocalizationCSVViewController!
-    
-    func execute(finishWithErrorMessage: String? -> ()) {
+    func execute(topFolderPathTextField topFolderPathTextField: NSTextField, bottomFolderPathTextField: NSTextField, finishWithErrorMessage: String? -> ()) {
         do {
-            try updateStringsFilesForFolderPath(localizationCSVViewController.bottomFolderPathTextField.stringValue, csvsFolderPath: localizationCSVViewController.topFolderPathTextField.stringValue)
+            try updateStringsFilesForFolderPath(bottomFolderPathTextField.stringValue, csvsFolderPath: topFolderPathTextField.stringValue)
             finishWithErrorMessage(nil)
         } catch Error.DestinationFolderAlreadyExists(let message) {
             finishWithErrorMessage(message)
