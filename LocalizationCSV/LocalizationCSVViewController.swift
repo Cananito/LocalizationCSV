@@ -11,6 +11,8 @@ import Cocoa
 @objc protocol LocalizationCSVExecutor {
     weak var localizationCSVViewController: LocalizationCSVViewController! { get set }
     optional func setup()
+    // TODO: Switch to `func execute() throws` to move duplicated error handling to the execute(sender:) method.
+    // Can't do this because of a Swift bug.
     func execute(finish: String? -> ())
 }
 
