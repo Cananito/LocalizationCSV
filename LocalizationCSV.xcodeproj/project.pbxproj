@@ -18,8 +18,8 @@
 		42A206F21BA5192500F8D2E2 /* LocalizationCSV.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */; settings = {ASSET_TAGS = (); }; };
 		42A206F61BA51E6300F8D2E2 /* LocaleDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206F51BA51E6300F8D2E2 /* LocaleDatabase.swift */; settings = {ASSET_TAGS = (); }; };
 		42A206F81BA618A000F8D2E2 /* LocalizationCSVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206F71BA618A000F8D2E2 /* LocalizationCSVViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		42A206FA1BA61E0D00F8D2E2 /* ToCSVsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206F91BA61E0D00F8D2E2 /* ToCSVsUI.swift */; settings = {ASSET_TAGS = (); }; };
-		42A206FC1BA61E2A00F8D2E2 /* FromCSVsUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206FB1BA61E2A00F8D2E2 /* FromCSVsUI.swift */; settings = {ASSET_TAGS = (); }; };
+		42A206FA1BA61E0D00F8D2E2 /* ToCSVsExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206F91BA61E0D00F8D2E2 /* ToCSVsExecutor.swift */; settings = {ASSET_TAGS = (); }; };
+		42A206FC1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206FB1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +37,8 @@
 		42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LocalizationCSV.sqlite; sourceTree = "<group>"; };
 		42A206F51BA51E6300F8D2E2 /* LocaleDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleDatabase.swift; sourceTree = "<group>"; };
 		42A206F71BA618A000F8D2E2 /* LocalizationCSVViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationCSVViewController.swift; sourceTree = "<group>"; };
-		42A206F91BA61E0D00F8D2E2 /* ToCSVsUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToCSVsUI.swift; sourceTree = "<group>"; };
-		42A206FB1BA61E2A00F8D2E2 /* FromCSVsUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCSVsUI.swift; sourceTree = "<group>"; };
+		42A206F91BA61E0D00F8D2E2 /* ToCSVsExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToCSVsExecutor.swift; sourceTree = "<group>"; };
+		42A206FB1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCSVsExecutor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +74,8 @@
 			children = (
 				4285C7D51B9775D000A2A1DC /* AppDelegate.swift */,
 				42A206F71BA618A000F8D2E2 /* LocalizationCSVViewController.swift */,
-				42A206F91BA61E0D00F8D2E2 /* ToCSVsUI.swift */,
-				42A206FB1BA61E2A00F8D2E2 /* FromCSVsUI.swift */,
+				42A206F91BA61E0D00F8D2E2 /* ToCSVsExecutor.swift */,
+				42A206FB1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift */,
 				4285C7E61B97802900A2A1DC /* CSVsGenerator.swift */,
 				4285C7EA1B97AC6A00A2A1DC /* CSV.swift */,
 				4285C7EC1B97ADD400A2A1DC /* StringsFile.swift */,
@@ -161,8 +161,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42A206FC1BA61E2A00F8D2E2 /* FromCSVsUI.swift in Sources */,
-				42A206FA1BA61E0D00F8D2E2 /* ToCSVsUI.swift in Sources */,
+				42A206FC1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift in Sources */,
+				42A206FA1BA61E0D00F8D2E2 /* ToCSVsExecutor.swift in Sources */,
 				4285C7E71B97802900A2A1DC /* CSVsGenerator.swift in Sources */,
 				4285C7EB1B97AC6A00A2A1DC /* CSV.swift in Sources */,
 				42A206F61BA51E6300F8D2E2 /* LocaleDatabase.swift in Sources */,

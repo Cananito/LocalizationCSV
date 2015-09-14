@@ -776,15 +776,15 @@ DQ
                         <outlet property="browseTopFolderPathButton" destination="AKU-ty-x1H" id="nkL-Rx-6rl"/>
                         <outlet property="executeButton" destination="DG3-C6-T82" id="5WT-0j-pzY"/>
                         <outlet property="loadingIndicator" destination="o8c-Mp-Zd0" id="ufe-sG-noT"/>
-                        <outlet property="localizationCSVUI" destination="O3K-Zu-lzi" id="pi6-jK-JDh"/>
+                        <outlet property="localizationCSVExecutor" destination="O3K-Zu-lzi" id="5f2-xy-JcM"/>
                         <outlet property="topFolderPathLabel" destination="QDB-Xy-0GI" id="Cf6-Od-Fym"/>
                         <outlet property="topFolderPathTextField" destination="xNh-XT-Y7E" id="CRe-ou-XJA"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="O3K-Zu-lzi" customClass="ToCSVsUI" customModule="LocalizationCSV" customModuleProvider="target">
+                <customObject id="O3K-Zu-lzi" customClass="ToCSVsExecuter" customModule="LocalizationCSV" customModuleProvider="target">
                     <connections>
-                        <outlet property="localizationCSVViewController" destination="XfG-lQ-9wD" id="T48-vA-GXR"/>
+                        <outlet property="localizationCSVViewController" destination="XfG-lQ-9wD" id="gOh-Xp-FZp"/>
                     </connections>
                 </customObject>
             </objects>
@@ -925,7 +925,7 @@ DQ
                         <outlet property="browseTopFolderPathButton" destination="X6u-G2-EVZ" id="xwi-d2-3QF"/>
                         <outlet property="executeButton" destination="p8T-kV-4n9" id="bby-4J-bVJ"/>
                         <outlet property="loadingIndicator" destination="GUT-0D-DCG" id="cEc-aI-vcG"/>
-                        <outlet property="localizationCSVUI" destination="5O3-zv-Pym" id="gcG-4Q-X5L"/>
+                        <outlet property="localizationCSVExecutor" destination="5O3-zv-Pym" id="6Wo-45-svB"/>
                         <outlet property="topFolderPathLabel" destination="u6I-ju-m8g" id="GTn-1t-z2N"/>
                         <outlet property="topFolderPathTextField" destination="hSH-6g-D0v" id="flM-8h-Mtu"/>
                     </connections>
@@ -933,7 +933,7 @@ DQ
                 <customObject id="ar0-8z-6rL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="5O3-zv-Pym" customClass="FromCSVsUI" customModule="LocalizationCSV" customModuleProvider="target">
                     <connections>
-                        <outlet property="localizationCSVViewController" destination="gxb-9v-4XY" id="69a-3L-oUA"/>
+                        <outlet property="localizationCSVViewController" destination="gxb-9v-4XY" id="GZh-dw-MG3"/>
                     </connections>
                 </customObject>
             </objects>

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-@objc protocol LocalizationCSVUI {
+@objc protocol LocalizationCSVExecutor {
     weak var localizationCSVViewController: LocalizationCSVViewController! { get set }
     optional func setup()
     func execute(finish: String? -> ())
@@ -26,13 +26,13 @@ class LocalizationCSVViewController : NSViewController {
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var loadingIndicator: NSProgressIndicator!
     
-    @IBOutlet var localizationCSVUI: LocalizationCSVUI!
+    @IBOutlet var localizationCSVExecutor: LocalizationCSVExecutor!
     
     // MARK: Overriden Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        localizationCSVUI.setup?()
+        localizationCSVExecutor.setup?()
     }
     
     override func controlTextDidChange(obj: NSNotification) {
@@ -52,7 +52,7 @@ class LocalizationCSVViewController : NSViewController {
     @IBAction func execute(sender: AnyObject!) {
         showLoadingUI()
         NSOperationQueue().addOperationWithBlock { [unowned self] () -> Void in
-            self.localizationCSVUI.execute(self.finishExecuteActionWithErrorMessage)
+            self.localizationCSVExecutor.execute(self.finishExecuteActionWithErrorMessage)
         }
     }
     
@@ -99,7 +99,7 @@ class LocalizationCSVViewController : NSViewController {
     }
     
     private func finishExecuteActionWithErrorMessage(errorMessage: String?) {
-        NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
             self.hideLoadingUI()
             if let message = errorMessage {
                 let alert = NSAlert()
@@ -107,6 +107,6 @@ class LocalizationCSVViewController : NSViewController {
                 alert.alertStyle = NSAlertStyle.InformationalAlertStyle
                 alert.beginSheetModalForWindow(self.view.window!, completionHandler: Optional.None)
             }
-        })
+        }
     }
 }
