@@ -11,6 +11,7 @@ import Foundation
 enum Error: ErrorType {
     case DestinationFolderAlreadyExists(message: String)
     case FailedToGenerateStringsFile(message: String)
+    case FailedToReadCSVFile(message: String)
 }
 
 func generateCSVsForFolderPath(folderPath: String, destinationPath: String) throws {
@@ -114,8 +115,8 @@ func updateStringsFilesForBaseFolderPath(baseFolderPath: String, folderPath: Str
 
 func updateStringsFilesForFile(fileName: String, folderPath: String, includeBaseLocalization: Bool, csvsFolderPath: String) throws {
     if let csvFilePath = try csvFilePathForFileName(fileName, inDestinationPath: csvsFolderPath) {
-        let csvFileContents = try NSString(contentsOfFile: csvFilePath, usedEncoding: nil) as String
-        let csv = CSV(textRepresentation: csvFileContents, name: fileName)
+        let textRepresentation = try csvFileContents(csvFilePath)
+        let csv = CSV(textRepresentation: textRepresentation, name: fileName)
         
         let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
         for content in contents {
@@ -215,4 +216,30 @@ private func csvFilePathForFileName(fileName: String, inDestinationPath: String)
         }
     }
     return nil
+}
+
+private func csvFileContents(csvFilePath: String) throws -> String {
+    guard let data = NSData(contentsOfFile: csvFilePath) else {
+        throw Error.FailedToReadCSVFile(message: "Could not load CSV file at path: \(csvFilePath)")
+    }
+    
+    var convertedString: NSString? = nil
+    let encoding = NSString.stringEncodingForData(data, encodingOptions: nil, convertedString: &convertedString, usedLossyConversion: nil)
+    
+    guard let string = convertedString else {
+        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+    }
+    
+    if encoding == NSUTF8StringEncoding {
+        return string as String
+    }
+    
+    guard let utf8Data = string.dataUsingEncoding(NSUTF8StringEncoding) else {
+        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+    }
+    guard let utf8String = NSString(data: utf8Data, encoding: NSUTF8StringEncoding) else {
+        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+    }
+    
+    return utf8String as String
 }
