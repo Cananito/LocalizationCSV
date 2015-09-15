@@ -9,7 +9,7 @@ OS X app to generate CSV files from a project’s NSLocalizedStrings and IB file
 
 ## Usage Instructions
 
-There is no precompiled version of the app yet. For now you need to clone the repository and run the app from Xcode.
+Start by downloading the [latest release](https://github.com/Cananito/LocalizationCSV/releases).
 
 ### Generate CSVs
 
