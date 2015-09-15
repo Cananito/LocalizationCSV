@@ -17,7 +17,7 @@ The first tab takes care of generating a set of CSV files based on the existing 
 
 The language columns in each CSV is determined based on the enabled locales for the project and IB files.
 
-<img src="https://raw.githubusercontent.com/Cananito/LocalizationCSV/master/Screenshots/ToCSVs.png" />
+<img src="https://raw.githubusercontent.com/Cananito/LocalizationCSV/master/Assets/Screenshots/ToCSVs.png" />
 
 You should point the first text field to the root of your project. The second text field indicates where it’ll create a new folder with the generated CSVs.
 
@@ -25,6 +25,6 @@ You should point the first text field to the root of your project. The second te
 
 The second tab takes care of updating existing `.strings` files out of existing CSVs (must’ve been created by this app).
 
-<img src="https://raw.githubusercontent.com/Cananito/LocalizationCSV/master/Screenshots/FromCSVs.png" />
+<img src="https://raw.githubusercontent.com/Cananito/LocalizationCSV/master/Assets/Screenshots/FromCSVs.png" />
 
 You should point the first text field to the folder containing the CSV files. You should point the second text field to the root of your project.
