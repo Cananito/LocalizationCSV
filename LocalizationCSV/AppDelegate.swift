@@ -12,4 +12,11 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
     }
+    
+    func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if let window = NSApplication.sharedApplication().windows.first {
+            window.makeKeyAndOrderFront(nil)
+        }
+        return true
+    }
 }
