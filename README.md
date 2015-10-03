@@ -4,7 +4,6 @@ OS X app to generate CSV files from a project’s NSLocalizedStrings and IB file
 
 ## Requirements
 
-* Xcode 7 beta 6.
 * OS X 10.10
 
 ## Usage Instructions
