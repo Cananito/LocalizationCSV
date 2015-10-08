@@ -49,14 +49,16 @@ private func generateCSVFromLocalizableStringsFileForProject(folderPath: String,
     // `find ./ -name "*.m" -print0 | xargs -0 genstrings -o .`
     executeShellCommand("find \(folderPath) -name \"*.m\" -print0 | xargs -0 genstrings -o \(destinationPath)")
     
-    let tempLocalizableStringsFile = destinationPath + "/Localizable.strings"
-    
-    if NSFileManager.defaultManager().fileExistsAtPath(tempLocalizableStringsFile) == false {
-        throw Error.FailedToGenerateStringsFile(message: "Failed to generate the Localizable.strings file.")
+    let destinationContents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(destinationPath)
+    if destinationContents.count == 0 {
+        throw Error.FailedToGenerateStringsFile(message: "Failed to generate the strings files.")
     }
     
-    try generateCSVFromStringsFilePath(tempLocalizableStringsFile, destinationPath: destinationPath)
-    try deleteFileAtPath(tempLocalizableStringsFile)
+    for stringsFile in destinationContents {
+        let stringsFilePath = "\(destinationPath)/\(stringsFile)"
+        try generateCSVFromStringsFilePath(stringsFilePath, destinationPath: destinationPath)
+        try deleteFileAtPath(stringsFilePath)
+    }
 }
 
 // MARK: Interface Builder
