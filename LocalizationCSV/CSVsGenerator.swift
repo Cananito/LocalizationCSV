@@ -118,7 +118,8 @@ func updateStringsFilesForBaseFolderPath(baseFolderPath: String, folderPath: Str
 func updateStringsFilesForFile(fileName: String, folderPath: String, includeBaseLocalization: Bool, csvsFolderPath: String) throws {
     if let csvFilePath = try csvFilePathForFileName(fileName, inDestinationPath: csvsFolderPath) {
         let textRepresentation = try csvFileContents(csvFilePath)
-        let csv = CSV(textRepresentation: textRepresentation, name: fileName)
+        let newLineCharacter = NSUserDefaults.standardUserDefaults().stringForKey(NewLineCharacterKey) ?? "\n"
+        let csv = CSV(textRepresentation: textRepresentation, name: fileName, newLineCharacter: Character(newLineCharacter))
         
         let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
         for content in contents {
@@ -177,7 +178,8 @@ private func appendExistingTranslationsFromLocaleFolder(folderPath: String, dest
             }
             
             let csvFileContents = try NSString(contentsOfFile: csvFilePath, usedEncoding: nil) as String
-            var csv = CSV(textRepresentation: csvFileContents, name: fileName)
+            let newLineCharacter = NSUserDefaults.standardUserDefaults().stringForKey(NewLineCharacterKey) ?? "\n"
+            var csv = CSV(textRepresentation: csvFileContents, name: fileName, newLineCharacter: Character(newLineCharacter))
             csv.addExistingTranslation(stringsFile, language: language)
             try persistCSV(csv, destinationPath: destinationPath)
         }
@@ -194,7 +196,8 @@ private func generateCSVFromStringsFilePath(filePath: String, destinationPath: S
     let fileContents = try NSString(contentsOfFile: filePath, usedEncoding: nil) as String
     let stringsFile = StringsFile(textRepresentation: fileContents)
     let csvFileName = ((filePath as NSString).lastPathComponent as NSString).stringByDeletingPathExtension
-    let csv = CSV(baseStringsFile: stringsFile, name: csvFileName)
+    let newLineCharacter = NSUserDefaults.standardUserDefaults().stringForKey(NewLineCharacterKey) ?? "\n"
+    let csv = CSV(baseStringsFile: stringsFile, name: csvFileName, newLineCharacter: Character(newLineCharacter))
     try persistCSV(csv, destinationPath: destinationPath)
 }
 

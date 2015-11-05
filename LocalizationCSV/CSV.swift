@@ -12,12 +12,14 @@ struct CSV {
     
     var grid: Grid
     let name: String
+    private let newLineCharacter: Character
     
     let ColumnTitleRowIndex = 0
     let KeyColumnIndex = 0
     let BaseColumnIndex = 1
     
-    init(baseStringsFile: StringsFile, name: String) {
+    init(baseStringsFile: StringsFile, name: String, newLineCharacter: Character) {
+        self.newLineCharacter = newLineCharacter
         var grid = Grid()
         
         let firstRow = ["Key", "Base", "Comment"]
@@ -32,7 +34,9 @@ struct CSV {
         self.name = name
     }
     
-    init(textRepresentation: String, name: String) {
+    init(textRepresentation: String, name: String, newLineCharacter: Character) {
+        self.newLineCharacter = newLineCharacter
+        
         var grid = Grid()
         var currentRow = Row()
         var currentValue = ""
@@ -43,8 +47,8 @@ struct CSV {
         
         for var index = 0; index < characters.count; index++ {
             let character: Character
-            if characters[index] == "\r\n" {
-                character = "\n"
+            if characters[index] == "\n" || characters[index] == "\r\n" || characters[index] == "\r" {
+                character = self.newLineCharacter
             } else {
                 character = characters[index]
             }
@@ -63,7 +67,7 @@ struct CSV {
                 currentRow.append(currentValue)
                 currentValue = ""
                 break
-            case ("\n", true, true):
+            case (self.newLineCharacter, true, true):
                 currentRow.append(currentValue)
                 grid.append(currentRow)
                 currentRow = Row()
@@ -71,10 +75,10 @@ struct CSV {
                 foundFirstDoubleQuote = false
                 foundSecondDoubleQuote = false
                 break
-            case ("\n", true, false):
+            case (self.newLineCharacter, true, false):
                 currentValue.append(character)
                 break
-            case ("\n", false, _):
+            case (self.newLineCharacter, false, _):
                 currentRow.append(currentValue)
                 grid.append(currentRow)
                 currentRow = Row()
@@ -129,7 +133,7 @@ struct CSV {
             let escapedRow = row.map { $0.csvEscaped() }
             rowStrings.append(escapedRow.joinWithSeparator(","))
         }
-        return rowStrings.joinWithSeparator("\n")
+        return rowStrings.joinWithSeparator(String(self.newLineCharacter))
     }
     
     func commentsColumnIndex() -> Int? {
