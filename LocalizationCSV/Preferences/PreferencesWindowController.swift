@@ -12,6 +12,7 @@ class PreferencesWindowController : NSWindowController {
     @IBOutlet weak var toolbar: NSToolbar!
     
     override func windowDidLoad() {
+        super.windowDidLoad()
         switchToPaneWithIdentifier("General")
     }
     

@@ -681,10 +681,10 @@ DQ
             </objects>
             <point key="canvasLocation" x="688" y="833"/>
         </scene>
-        <!--View Controller-->
+        <!--General Preferences View Controller-->
         <scene sceneID="fDV-iu-FfX">
             <objects>
-                <viewController id="grx-Uz-AZY" sceneMemberID="viewController">
+                <viewController id="grx-Uz-AZY" customClass="GeneralPreferencesViewController" customModule="LocalizationCSV" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="akl-Ne-a8R">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -723,6 +723,9 @@ DQ
                                                     </buttonCell>
                                                 </column>
                                             </cells>
+                                            <connections>
+                                                <action selector="changeNewLineCharacter:" target="grx-Uz-AZY" id="Hbp-50-ZCA"/>
+                                            </connections>
                                         </matrix>
                                     </subviews>
                                     <constraints>
@@ -744,6 +747,9 @@ DQ
                             <constraint firstItem="Zey-k6-iEm" firstAttribute="top" secondItem="akl-Ne-a8R" secondAttribute="top" constant="20" id="utd-KO-s23"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="changeNewLineCharacterPickerRadioMatrix" destination="aEQ-ad-Z4E" id="4K7-6u-ucP"/>
+                    </connections>
                 </viewController>
                 <customObject id="nzS-ke-eXY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
