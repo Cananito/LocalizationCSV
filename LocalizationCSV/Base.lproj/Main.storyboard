@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
@@ -417,7 +417,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QDB-Xy-0GI">
-                                <rect key="frame" x="18" y="233" width="91" height="17"/>
+                                <rect key="frame" x="18" y="233" width="89" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project Folder" id="PmY-kI-y0F">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -425,7 +425,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xNh-XT-Y7E">
-                                <rect key="frame" x="20" y="203" width="346" height="22"/>
+                                <rect key="frame" x="20" y="203" width="348" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="9Uo-Rg-9Iz">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -436,7 +436,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AKU-ty-x1H">
-                                <rect key="frame" x="368" y="197" width="98" height="32"/>
+                                <rect key="frame" x="370" y="197" width="96" height="32"/>
                                 <buttonCell key="cell" type="push" title="Browse..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7UX-ba-4UM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -446,7 +446,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="A4C-cP-tQH">
-                                <rect key="frame" x="18" y="178" width="155" height="17"/>
+                                <rect key="frame" x="18" y="178" width="151" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CSVs Folder Destination" id="3sX-37-JHs">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -454,7 +454,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oRG-D8-aco">
-                                <rect key="frame" x="20" y="148" width="346" height="22"/>
+                                <rect key="frame" x="20" y="148" width="348" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="q4l-47-Wdo">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -465,7 +465,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="34j-5x-mQR">
-                                <rect key="frame" x="368" y="142" width="98" height="32"/>
+                                <rect key="frame" x="370" y="142" width="96" height="32"/>
                                 <buttonCell key="cell" type="push" title="Browse..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PxV-yB-iG9">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -475,7 +475,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DG3-C6-T82">
-                                <rect key="frame" x="331" y="13" width="135" height="32"/>
+                                <rect key="frame" x="334" y="13" width="132" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate CSVs" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="B9N-C7-L9f">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -514,27 +514,29 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomFolderPathLabel" destination="A4C-cP-tQH" id="gs8-Bi-tjj"/>
-                        <outlet property="bottomFolderPathTextField" destination="oRG-D8-aco" id="rKM-Ck-nuc"/>
-                        <outlet property="browseBottomFolderPathButton" destination="34j-5x-mQR" id="4Ok-NC-6W1"/>
-                        <outlet property="browseTopFolderPathButton" destination="AKU-ty-x1H" id="nkL-Rx-6rl"/>
+                        <outlet property="bottomPathLabel" destination="A4C-cP-tQH" id="yH9-Cq-k4v"/>
+                        <outlet property="bottomPathTextField" destination="oRG-D8-aco" id="ZZN-CQ-6mY"/>
+                        <outlet property="browseBottomPathButton" destination="34j-5x-mQR" id="t6K-b1-eCt"/>
+                        <outlet property="browseTopPathButton" destination="AKU-ty-x1H" id="jQG-ub-XHN"/>
                         <outlet property="executeButton" destination="DG3-C6-T82" id="5WT-0j-pzY"/>
                         <outlet property="loadingIndicator" destination="o8c-Mp-Zd0" id="ufe-sG-noT"/>
                         <outlet property="localizationCSVExecutor" destination="O3K-Zu-lzi" id="5f2-xy-JcM"/>
-                        <outlet property="localizationCSVUISetup" destination="beF-jt-SZX" id="3vM-tI-tRg"/>
-                        <outlet property="topFolderPathLabel" destination="QDB-Xy-0GI" id="Cf6-Od-Fym"/>
-                        <outlet property="topFolderPathTextField" destination="xNh-XT-Y7E" id="CRe-ou-XJA"/>
+                        <outlet property="localizationCSVFilePathLogic" destination="acU-pF-dWM" id="xbB-cP-20w"/>
+                        <outlet property="localizationCSVUISetup" destination="beF-jt-SZX" id="jXj-Tk-nqu"/>
+                        <outlet property="topPathLabel" destination="QDB-Xy-0GI" id="Yh7-4c-N23"/>
+                        <outlet property="topPathTextField" destination="xNh-XT-Y7E" id="bxT-hg-h40"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="beF-jt-SZX" customClass="ToCSVsUISetup" customModule="LocalizationCSV" customModuleProvider="target">
+                <customObject id="beF-jt-SZX" customClass="DownloadsFolderBottomPathFieldSetup" customModule="LocalizationCSV" customModuleProvider="target">
                     <connections>
-                        <outlet property="localizationCSVViewController" destination="XfG-lQ-9wD" id="cvt-e4-4u9"/>
+                        <outlet property="localizationCSVViewController" destination="XfG-lQ-9wD" id="CcG-69-MxY"/>
                     </connections>
                 </customObject>
                 <customObject id="O3K-Zu-lzi" customClass="ToCSVsExecuter" customModule="LocalizationCSV" customModuleProvider="target"/>
+                <customObject id="acU-pF-dWM" customClass="CSVsFilePathLogic" customModule="LocalizationCSV" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="688" y="503"/>
+            <point key="canvasLocation" x="688" y="459"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="qJ4-St-TgE">
@@ -543,6 +545,7 @@ DQ
                     <tabViewItems>
                         <tabViewItem id="O1p-MT-KYu"/>
                         <tabViewItem id="JEO-UZ-Qpa"/>
+                        <tabViewItem id="gT2-H2-9k8"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="X0U-PR-9of">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -553,11 +556,12 @@ DQ
                     <connections>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="tabItems" id="qih-ms-yWA"/>
                         <segue destination="gxb-9v-4XY" kind="relationship" relationship="tabItems" id="c8G-U2-HDZ"/>
+                        <segue destination="rHZ-Hd-wWR" kind="relationship" relationship="tabItems" id="vw7-MU-K94"/>
                     </connections>
                 </tabViewController>
                 <customObject id="H3F-ej-fIf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="721"/>
+            <point key="canvasLocation" x="74" y="811"/>
         </scene>
         <!--From CSVs-->
         <scene sceneID="0Qm-es-iwZ">
@@ -568,7 +572,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="u6I-ju-m8g">
-                                <rect key="frame" x="18" y="233" width="81" height="17"/>
+                                <rect key="frame" x="18" y="233" width="79" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CSVs Folder" id="hOd-KB-cQ1">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -576,7 +580,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hSH-6g-D0v">
-                                <rect key="frame" x="20" y="203" width="346" height="22"/>
+                                <rect key="frame" x="20" y="203" width="348" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Ssr-Ba-RGy">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -587,7 +591,7 @@ DQ
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="X6u-G2-EVZ">
-                                <rect key="frame" x="368" y="197" width="98" height="32"/>
+                                <rect key="frame" x="370" y="197" width="96" height="32"/>
                                 <buttonCell key="cell" type="push" title="Browse..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iFB-Og-wzz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -597,7 +601,7 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bcB-d6-b1G">
-                                <rect key="frame" x="18" y="178" width="91" height="17"/>
+                                <rect key="frame" x="18" y="178" width="89" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Project Folder" id="MdB-Dz-GKp">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -605,7 +609,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mo0-nG-I8N">
-                                <rect key="frame" x="20" y="148" width="346" height="22"/>
+                                <rect key="frame" x="20" y="148" width="348" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fkw-6V-har">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -616,7 +620,7 @@ DQ
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mb3-Cn-2zh">
-                                <rect key="frame" x="368" y="142" width="98" height="32"/>
+                                <rect key="frame" x="370" y="142" width="96" height="32"/>
                                 <buttonCell key="cell" type="push" title="Browse..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XbX-S3-g6F">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -626,7 +630,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p8T-kV-4n9">
-                                <rect key="frame" x="301" y="13" width="165" height="32"/>
+                                <rect key="frame" x="303" y="13" width="163" height="32"/>
                                 <buttonCell key="cell" type="push" title="Update Strings Files" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wAm-pn-2sx">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -665,21 +669,23 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomFolderPathLabel" destination="bcB-d6-b1G" id="xvt-jU-g1X"/>
-                        <outlet property="bottomFolderPathTextField" destination="Mo0-nG-I8N" id="Gko-MS-tej"/>
-                        <outlet property="browseBottomFolderPathButton" destination="mb3-Cn-2zh" id="Zlg-Ra-oQi"/>
-                        <outlet property="browseTopFolderPathButton" destination="X6u-G2-EVZ" id="xwi-d2-3QF"/>
+                        <outlet property="bottomPathLabel" destination="bcB-d6-b1G" id="cWn-3F-8a1"/>
+                        <outlet property="bottomPathTextField" destination="Mo0-nG-I8N" id="Tcn-RB-Acu"/>
+                        <outlet property="browseBottomPathButton" destination="mb3-Cn-2zh" id="IC8-Gg-JqX"/>
+                        <outlet property="browseTopPathButton" destination="X6u-G2-EVZ" id="Woq-cF-0SH"/>
                         <outlet property="executeButton" destination="p8T-kV-4n9" id="bby-4J-bVJ"/>
                         <outlet property="loadingIndicator" destination="GUT-0D-DCG" id="cEc-aI-vcG"/>
                         <outlet property="localizationCSVExecutor" destination="5O3-zv-Pym" id="6Wo-45-svB"/>
-                        <outlet property="topFolderPathLabel" destination="u6I-ju-m8g" id="GTn-1t-z2N"/>
-                        <outlet property="topFolderPathTextField" destination="hSH-6g-D0v" id="flM-8h-Mtu"/>
+                        <outlet property="localizationCSVFilePathLogic" destination="bJg-JT-cmt" id="b4S-KC-QaA"/>
+                        <outlet property="topPathLabel" destination="u6I-ju-m8g" id="lqa-Kx-Kjg"/>
+                        <outlet property="topPathTextField" destination="hSH-6g-D0v" id="FDL-j8-v2I"/>
                     </connections>
                 </viewController>
                 <customObject id="ar0-8z-6rL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="5O3-zv-Pym" customClass="FromCSVsUI" customModule="LocalizationCSV" customModuleProvider="target"/>
+                <customObject id="5O3-zv-Pym" customClass="FromCSVsExecuter" customModule="LocalizationCSV" customModuleProvider="target"/>
+                <customObject id="bJg-JT-cmt" customClass="CSVsFilePathLogic" customModule="LocalizationCSV" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="688" y="833"/>
+            <point key="canvasLocation" x="688" y="774"/>
         </scene>
         <!--General Preferences View Controller-->
         <scene sceneID="fDV-iu-FfX">
@@ -781,6 +787,136 @@ DQ
                 <customObject id="bdB-Vg-mO1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="664" y="141"/>
+        </scene>
+        <!--LocalizationCSV View Controller-->
+        <scene sceneID="Srg-wk-Pbq">
+            <objects>
+                <viewController title="To JSONs" id="rHZ-Hd-wWR" customClass="LocalizationCSVViewController" customModule="LocalizationCSV" sceneMemberID="viewController">
+                    <view key="view" id="XHg-38-KRc">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hpU-qy-n2z">
+                                <rect key="frame" x="18" y="233" width="86" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="CSV File Path" id="6Yb-e4-TGd">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QWv-sY-duO">
+                                <rect key="frame" x="20" y="203" width="348" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="jsP-Bc-ziK">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="rHZ-Hd-wWR" id="9Li-Lo-JsV"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NAH-bc-79s">
+                                <rect key="frame" x="370" y="197" width="96" height="32"/>
+                                <buttonCell key="cell" type="push" title="Browse..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uea-ng-hdz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="browseTopFolderPath:" target="rHZ-Hd-wWR" id="0os-Cm-57u"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HGd-AH-hYQ">
+                                <rect key="frame" x="18" y="178" width="160" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="JSONs Folder Destination" id="7pt-Fe-cVO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Eng-AK-xzd">
+                                <rect key="frame" x="20" y="148" width="348" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="h4S-0g-vXk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="rHZ-Hd-wWR" id="t1B-qS-pyf"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="68Y-7J-Tal">
+                                <rect key="frame" x="370" y="142" width="96" height="32"/>
+                                <buttonCell key="cell" type="push" title="Browse..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cXh-1x-HlM">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="browseBottomFolderPath:" target="rHZ-Hd-wWR" id="wTb-GX-iyJ"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k9f-dq-V2s">
+                                <rect key="frame" x="325" y="13" width="141" height="32"/>
+                                <buttonCell key="cell" type="push" title="Generate JSONs" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="juR-8k-Jvr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="execute:" target="rHZ-Hd-wWR" id="GFE-ux-MBf"/>
+                                </connections>
+                            </button>
+                            <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="LdI-yX-8Q3">
+                                <rect key="frame" x="224" y="119" width="32" height="32"/>
+                            </progressIndicator>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="NAH-bc-79s" secondAttribute="trailing" constant="20" id="0Bz-oj-yCL"/>
+                            <constraint firstItem="Eng-AK-xzd" firstAttribute="top" secondItem="HGd-AH-hYQ" secondAttribute="bottom" constant="8" id="2Dc-YX-2oe"/>
+                            <constraint firstAttribute="trailing" secondItem="k9f-dq-V2s" secondAttribute="trailing" constant="20" id="Dc2-9u-7IJ"/>
+                            <constraint firstItem="hpU-qy-n2z" firstAttribute="leading" secondItem="XHg-38-KRc" secondAttribute="leading" constant="20" id="EfX-4f-hUu"/>
+                            <constraint firstAttribute="trailing" secondItem="68Y-7J-Tal" secondAttribute="trailing" constant="20" id="FSW-kb-1AL"/>
+                            <constraint firstItem="QWv-sY-duO" firstAttribute="top" secondItem="hpU-qy-n2z" secondAttribute="bottom" constant="8" id="H4Q-9L-0as"/>
+                            <constraint firstItem="k9f-dq-V2s" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Eng-AK-xzd" secondAttribute="bottom" constant="8" id="UCc-AP-FbE"/>
+                            <constraint firstItem="HGd-AH-hYQ" firstAttribute="top" secondItem="QWv-sY-duO" secondAttribute="bottom" constant="8" id="VpQ-5e-Qo5"/>
+                            <constraint firstItem="68Y-7J-Tal" firstAttribute="leading" secondItem="Eng-AK-xzd" secondAttribute="trailing" constant="8" id="Y4n-pe-tcP"/>
+                            <constraint firstItem="Eng-AK-xzd" firstAttribute="leading" secondItem="XHg-38-KRc" secondAttribute="leading" constant="20" id="b2e-x1-hhV"/>
+                            <constraint firstItem="LdI-yX-8Q3" firstAttribute="centerX" secondItem="XHg-38-KRc" secondAttribute="centerX" id="gGX-O2-beu"/>
+                            <constraint firstItem="LdI-yX-8Q3" firstAttribute="centerY" secondItem="XHg-38-KRc" secondAttribute="centerY" id="hLj-et-hyX"/>
+                            <constraint firstAttribute="bottom" secondItem="k9f-dq-V2s" secondAttribute="bottom" constant="20" id="kEz-Hj-fwX"/>
+                            <constraint firstItem="QWv-sY-duO" firstAttribute="leading" secondItem="XHg-38-KRc" secondAttribute="leading" constant="20" id="oog-W5-kzN"/>
+                            <constraint firstItem="hpU-qy-n2z" firstAttribute="top" secondItem="XHg-38-KRc" secondAttribute="top" constant="20" id="rbw-fJ-k3S"/>
+                            <constraint firstItem="68Y-7J-Tal" firstAttribute="centerY" secondItem="Eng-AK-xzd" secondAttribute="centerY" id="wU5-Cq-jpa"/>
+                            <constraint firstItem="NAH-bc-79s" firstAttribute="centerY" secondItem="QWv-sY-duO" secondAttribute="centerY" id="xVX-3H-GOf"/>
+                            <constraint firstItem="HGd-AH-hYQ" firstAttribute="leading" secondItem="XHg-38-KRc" secondAttribute="leading" constant="20" id="yF7-vf-btY"/>
+                            <constraint firstItem="NAH-bc-79s" firstAttribute="leading" secondItem="QWv-sY-duO" secondAttribute="trailing" constant="8" id="ydc-Pt-rtm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomPathLabel" destination="HGd-AH-hYQ" id="yqS-9n-PdM"/>
+                        <outlet property="bottomPathTextField" destination="Eng-AK-xzd" id="7UH-cW-gB0"/>
+                        <outlet property="browseBottomPathButton" destination="68Y-7J-Tal" id="8m4-Sg-rEC"/>
+                        <outlet property="browseTopPathButton" destination="NAH-bc-79s" id="apW-2W-0j2"/>
+                        <outlet property="executeButton" destination="k9f-dq-V2s" id="pd2-n1-kz7"/>
+                        <outlet property="loadingIndicator" destination="LdI-yX-8Q3" id="FxS-xc-Scc"/>
+                        <outlet property="localizationCSVExecutor" destination="3Ma-wO-QxH" id="dox-tH-dUx"/>
+                        <outlet property="localizationCSVFilePathLogic" destination="bmU-9e-sIN" id="Qa3-hN-ycB"/>
+                        <outlet property="localizationCSVUISetup" destination="6iQ-On-svg" id="bXH-wm-zBP"/>
+                        <outlet property="topPathLabel" destination="hpU-qy-n2z" id="Jzc-Er-9dg"/>
+                        <outlet property="topPathTextField" destination="QWv-sY-duO" id="Y3z-ds-vlf"/>
+                    </connections>
+                </viewController>
+                <customObject id="V6c-9h-Nk7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="6iQ-On-svg" customClass="DownloadsFolderBottomPathFieldSetup" customModule="LocalizationCSV" customModuleProvider="target">
+                    <connections>
+                        <outlet property="localizationCSVViewController" destination="rHZ-Hd-wWR" id="4I0-UZ-mjp"/>
+                    </connections>
+                </customObject>
+                <customObject id="3Ma-wO-QxH" customClass="ToJSONsExecuter" customModule="LocalizationCSV" customModuleProvider="target"/>
+                <customObject id="bmU-9e-sIN" customClass="ToJSONsFilePathLogic" customModule="LocalizationCSV" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="688" y="1091"/>
         </scene>
     </scenes>
     <resources>

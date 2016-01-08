@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		422F76F81BA7158A00F5D4AF /* ToCSVsUISetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422F76F71BA7158A00F5D4AF /* ToCSVsUISetup.swift */; };
+		421043B61C3F6354002F065B /* JSONsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421043B51C3F6354002F065B /* JSONsGenerator.swift */; };
+		421043B81C3F76EE002F065B /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421043B71C3F76EE002F065B /* Error.swift */; };
+		421043BA1C3F8793002F065B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421043B91C3F8793002F065B /* JSON.swift */; };
+		421043C01C3F930F002F065B /* Executors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421043BF1C3F930F002F065B /* Executors.swift */; };
+		421043C21C3F9954002F065B /* FilePathLogics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421043C11C3F9954002F065B /* FilePathLogics.swift */; };
+		422F76F81BA7158A00F5D4AF /* DownloadsFolderBottomPathFieldSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422F76F71BA7158A00F5D4AF /* DownloadsFolderBottomPathFieldSetup.swift */; };
 		4244DF321BEAFBAC0056DA4C /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244DF311BEAFBAC0056DA4C /* PreferencesWindowController.swift */; };
 		4244DF341BEB013E0056DA4C /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244DF331BEB013E0056DA4C /* GeneralPreferencesViewController.swift */; };
 		4244DF361BEB02EA0056DA4C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4244DF351BEB02EA0056DA4C /* Constants.swift */; };
@@ -22,12 +27,15 @@
 		42A206F21BA5192500F8D2E2 /* LocalizationCSV.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */; };
 		42A206F61BA51E6300F8D2E2 /* LocaleDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206F51BA51E6300F8D2E2 /* LocaleDatabase.swift */; };
 		42A206F81BA618A000F8D2E2 /* LocalizationCSVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206F71BA618A000F8D2E2 /* LocalizationCSVViewController.swift */; };
-		42A206FA1BA61E0D00F8D2E2 /* ToCSVsExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206F91BA61E0D00F8D2E2 /* ToCSVsExecutor.swift */; };
-		42A206FC1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42A206FB1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		422F76F71BA7158A00F5D4AF /* ToCSVsUISetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToCSVsUISetup.swift; sourceTree = "<group>"; };
+		421043B51C3F6354002F065B /* JSONsGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONsGenerator.swift; sourceTree = "<group>"; };
+		421043B71C3F76EE002F065B /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		421043B91C3F8793002F065B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		421043BF1C3F930F002F065B /* Executors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Executors.swift; sourceTree = "<group>"; };
+		421043C11C3F9954002F065B /* FilePathLogics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePathLogics.swift; sourceTree = "<group>"; };
+		422F76F71BA7158A00F5D4AF /* DownloadsFolderBottomPathFieldSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsFolderBottomPathFieldSetup.swift; sourceTree = "<group>"; };
 		4244DF311BEAFBAC0056DA4C /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
 		4244DF331BEB013E0056DA4C /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		4244DF351BEB02EA0056DA4C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -45,8 +53,6 @@
 		42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LocalizationCSV.sqlite; sourceTree = "<group>"; };
 		42A206F51BA51E6300F8D2E2 /* LocaleDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleDatabase.swift; sourceTree = "<group>"; };
 		42A206F71BA618A000F8D2E2 /* LocalizationCSVViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationCSVViewController.swift; sourceTree = "<group>"; };
-		42A206F91BA61E0D00F8D2E2 /* ToCSVsExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToCSVsExecutor.swift; sourceTree = "<group>"; };
-		42A206FB1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FromCSVsExecutor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,14 +97,17 @@
 			children = (
 				4285C7D51B9775D000A2A1DC /* AppDelegate.swift */,
 				42A206F71BA618A000F8D2E2 /* LocalizationCSVViewController.swift */,
-				422F76F71BA7158A00F5D4AF /* ToCSVsUISetup.swift */,
-				42A206F91BA61E0D00F8D2E2 /* ToCSVsExecutor.swift */,
-				42A206FB1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift */,
+				421043BF1C3F930F002F065B /* Executors.swift */,
+				421043C11C3F9954002F065B /* FilePathLogics.swift */,
+				422F76F71BA7158A00F5D4AF /* DownloadsFolderBottomPathFieldSetup.swift */,
 				4285C7E61B97802900A2A1DC /* CSVsGenerator.swift */,
+				421043B51C3F6354002F065B /* JSONsGenerator.swift */,
 				4285C7EA1B97AC6A00A2A1DC /* CSV.swift */,
 				4285C7EC1B97ADD400A2A1DC /* StringsFile.swift */,
+				421043B91C3F8793002F065B /* JSON.swift */,
 				42A206F51BA51E6300F8D2E2 /* LocaleDatabase.swift */,
 				4285C7E81B9785FA00A2A1DC /* Utilities.swift */,
+				421043B71C3F76EE002F065B /* Error.swift */,
 				4244DF351BEB02EA0056DA4C /* Constants.swift */,
 				4285C7DB1B9775D000A2A1DC /* Main.storyboard */,
 				4244DF301BEAFB9E0056DA4C /* Preferences */,
@@ -181,10 +190,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42A206FC1BA61E2A00F8D2E2 /* FromCSVsExecutor.swift in Sources */,
-				42A206FA1BA61E0D00F8D2E2 /* ToCSVsExecutor.swift in Sources */,
+				421043C01C3F930F002F065B /* Executors.swift in Sources */,
 				4285C7E71B97802900A2A1DC /* CSVsGenerator.swift in Sources */,
-				422F76F81BA7158A00F5D4AF /* ToCSVsUISetup.swift in Sources */,
+				421043B61C3F6354002F065B /* JSONsGenerator.swift in Sources */,
+				422F76F81BA7158A00F5D4AF /* DownloadsFolderBottomPathFieldSetup.swift in Sources */,
 				4244DF341BEB013E0056DA4C /* GeneralPreferencesViewController.swift in Sources */,
 				4285C7EB1B97AC6A00A2A1DC /* CSV.swift in Sources */,
 				42A206F61BA51E6300F8D2E2 /* LocaleDatabase.swift in Sources */,
@@ -193,7 +202,10 @@
 				4285C7E91B9785FA00A2A1DC /* Utilities.swift in Sources */,
 				4285C7ED1B97ADD400A2A1DC /* StringsFile.swift in Sources */,
 				42A206F81BA618A000F8D2E2 /* LocalizationCSVViewController.swift in Sources */,
+				421043B81C3F76EE002F065B /* Error.swift in Sources */,
+				421043C21C3F9954002F065B /* FilePathLogics.swift in Sources */,
 				4285C7D61B9775D000A2A1DC /* AppDelegate.swift in Sources */,
+				421043BA1C3F8793002F065B /* JSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

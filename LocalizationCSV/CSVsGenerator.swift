@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum Error: ErrorType {
-    case DestinationFolderAlreadyExists(message: String)
-    case FailedToGenerateStringsFile(message: String)
-    case FailedToReadCSVFile(message: String)
-}
-
 func generateCSVsForFolderPath(folderPath: String, destinationPath: String) throws {
     let folderName = NSDateFormatter.nowDateString()
     let destinationPath = destinationPath + "/" + folderName
@@ -188,10 +182,6 @@ private func appendExistingTranslationsFromLocaleFolder(folderPath: String, dest
 
 // MARK: General
 
-private func deleteFileAtPath(path: String) throws {
-    try NSFileManager.defaultManager().removeItemAtPath(path)
-}
-
 private func generateCSVFromStringsFilePath(filePath: String, destinationPath: String) throws {
     let fileContents = try NSString(contentsOfFile: filePath, usedEncoding: nil) as String
     let stringsFile = StringsFile(textRepresentation: fileContents)
@@ -221,30 +211,4 @@ private func csvFilePathForFileName(fileName: String, inDestinationPath: String)
         }
     }
     return nil
-}
-
-private func csvFileContents(csvFilePath: String) throws -> String {
-    guard let data = NSData(contentsOfFile: csvFilePath) else {
-        throw Error.FailedToReadCSVFile(message: "Could not load CSV file at path: \(csvFilePath)")
-    }
-    
-    var convertedString: NSString? = nil
-    let encoding = NSString.stringEncodingForData(data, encodingOptions: nil, convertedString: &convertedString, usedLossyConversion: nil)
-    
-    guard let string = convertedString else {
-        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
-    }
-    
-    if encoding == NSUTF8StringEncoding {
-        return string as String
-    }
-    
-    guard let utf8Data = string.dataUsingEncoding(NSUTF8StringEncoding) else {
-        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
-    }
-    guard let utf8String = NSString(data: utf8Data, encoding: NSUTF8StringEncoding) else {
-        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
-    }
-    
-    return utf8String as String
 }

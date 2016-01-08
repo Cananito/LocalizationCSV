@@ -14,24 +14,30 @@ import Cocoa
 }
 
 @objc protocol LocalizationCSVExecutor {
-    // TODO: Switch to `func execute() throws` to move duplicated error handling to the execute(sender:) method.
+    // TODO: Switch to `func execute() throws` to move error handling to the execute(sender:) method.
     // Can't do this because of a Swift bug.
-    func execute(topFolderPathTextField topFolderPathTextField: NSTextField, bottomFolderPathTextField: NSTextField, finishWithErrorMessage: String? -> ())
+    func execute(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: String? -> ())
+}
+
+@objc protocol LocalizationCSVFilePathLogic {
+    func openPanel() -> NSOpenPanel
+    func shouldEnableExecuteButton(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField) -> Bool
 }
 
 class LocalizationCSVViewController : NSViewController {
-    @IBOutlet weak var topFolderPathLabel: NSTextField!
-    @IBOutlet weak var topFolderPathTextField: NSTextField!
-    @IBOutlet weak var browseTopFolderPathButton: NSButton!
+    @IBOutlet weak var topPathLabel: NSTextField!
+    @IBOutlet weak var topPathTextField: NSTextField!
+    @IBOutlet weak var browseTopPathButton: NSButton!
     
-    @IBOutlet weak var bottomFolderPathLabel: NSTextField!
-    @IBOutlet weak var bottomFolderPathTextField: NSTextField!
-    @IBOutlet weak var browseBottomFolderPathButton: NSButton!
+    @IBOutlet weak var bottomPathLabel: NSTextField!
+    @IBOutlet weak var bottomPathTextField: NSTextField!
+    @IBOutlet weak var browseBottomPathButton: NSButton!
     
     @IBOutlet weak var executeButton: NSButton!
     @IBOutlet weak var loadingIndicator: NSProgressIndicator!
     
     @IBOutlet var localizationCSVExecutor: LocalizationCSVExecutor!
+    @IBOutlet var localizationCSVFilePathLogic: LocalizationCSVFilePathLogic!
     @IBOutlet var localizationCSVUISetup: LocalizationCSVUISetup?
     
     // MARK: Overriden Methods
@@ -48,28 +54,24 @@ class LocalizationCSVViewController : NSViewController {
     // MARK: Action Methods
     
     @IBAction func browseTopFolderPath(sender: AnyObject!) {
-        showOpenPanelForTextField(topFolderPathTextField)
+        showOpenPanelForTextField(topPathTextField)
     }
     
     @IBAction func browseBottomFolderPath(sender: AnyObject!) {
-        showOpenPanelForTextField(bottomFolderPathTextField)
+        showOpenPanelForTextField(bottomPathTextField)
     }
     
     @IBAction func execute(sender: AnyObject!) {
         showLoadingUI()
         NSOperationQueue().addOperationWithBlock { [unowned self] () -> Void in
-            self.localizationCSVExecutor.execute(topFolderPathTextField: self.topFolderPathTextField, bottomFolderPathTextField: self.bottomFolderPathTextField, finishWithErrorMessage: self.finishExecuteActionWithErrorMessage)
+            self.localizationCSVExecutor.execute(topPathTextField: self.topPathTextField, bottomPathTextField: self.bottomPathTextField, finishWithErrorMessage: self.finishExecuteActionWithErrorMessage)
         }
     }
     
     // MARK: Private Methods
     
     private func showOpenPanelForTextField(textField: NSTextField) {
-        let openPanel = NSOpenPanel()
-        openPanel.allowsMultipleSelection = false
-        openPanel.canChooseDirectories = true
-        openPanel.canChooseFiles = false
-        openPanel.canCreateDirectories = false
+        let openPanel = self.localizationCSVFilePathLogic.openPanel()
         openPanel.beginWithCompletionHandler { [weak self] (result) -> Void in
             if result == NSFileHandlingPanelOKButton, let pathURL = openPanel.URL {
                 textField.stringValue = pathURL.relativePath!
@@ -79,27 +81,27 @@ class LocalizationCSVViewController : NSViewController {
     }
     
     private func updateExecuteButtonEnabledState() {
-        executeButton.enabled = isTextFieldValueADirectoryPath(topFolderPathTextField) && isTextFieldValueADirectoryPath(bottomFolderPathTextField)
+        executeButton.enabled = self.localizationCSVFilePathLogic.shouldEnableExecuteButton(topPathTextField: topPathTextField, bottomPathTextField: bottomPathTextField)
     }
     
     private func showLoadingUI() {
-        topFolderPathLabel.hidden = true
-        topFolderPathTextField.hidden = true
-        browseTopFolderPathButton.hidden = true
-        bottomFolderPathLabel.hidden = true
-        bottomFolderPathTextField.hidden = true
-        browseBottomFolderPathButton.hidden = true
+        topPathLabel.hidden = true
+        topPathTextField.hidden = true
+        browseTopPathButton.hidden = true
+        bottomPathLabel.hidden = true
+        bottomPathTextField.hidden = true
+        browseBottomPathButton.hidden = true
         executeButton.hidden = true
         loadingIndicator.startAnimation(self)
     }
     
     private func hideLoadingUI() {
-        topFolderPathLabel.hidden = false
-        topFolderPathTextField.hidden = false
-        browseTopFolderPathButton.hidden = false
-        bottomFolderPathLabel.hidden = false
-        bottomFolderPathTextField.hidden = false
-        browseBottomFolderPathButton.hidden = false
+        topPathLabel.hidden = false
+        topPathTextField.hidden = false
+        browseTopPathButton.hidden = false
+        bottomPathLabel.hidden = false
+        bottomPathTextField.hidden = false
+        browseBottomPathButton.hidden = false
         executeButton.hidden = false
         loadingIndicator.stopAnimation(self)
     }

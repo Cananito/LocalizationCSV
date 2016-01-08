@@ -16,7 +16,17 @@ enum DataBaseError: ErrorType {
     case FailedToFinalizeSelectQuery(message: String)
 }
 
+func localeFolderNameForDisplayName(displayName: String) throws -> String? {
+    let query = "SELECT folder_name FROM Locale WHERE display_name == \"\(displayName)\" LIMIT 1"
+    return try executeSingleRowResultQuery(query)
+}
+
 func localeDisplayNameForFolderName(folderName: String) throws -> String? {
+    let query = "SELECT display_name FROM Locale WHERE folder_name == \"\(folderName)\" LIMIT 1"
+    return try executeSingleRowResultQuery(query)
+}
+
+private func executeSingleRowResultQuery(query: String) throws -> String? {
     var dataBase: COpaquePointer = nil
     guard let dataBaseLocation = NSBundle.mainBundle().pathForResource("LocalizationCSV", ofType: "sqlite") else {
         throw DataBaseError.DataBaseDoesNotExist(message: "Data base file not found.")
@@ -25,17 +35,16 @@ func localeDisplayNameForFolderName(folderName: String) throws -> String? {
         throw DataBaseError.FailToOpen(message: "Failed to open the data base.")
     }
     
-    let query = "SELECT display_name FROM Locale WHERE folder_name == \"\(folderName)\" LIMIT 1"
     var statement: COpaquePointer = nil
     if sqlite3_prepare_v2(dataBase, query, -1, &statement, nil) != SQLITE_OK {
         throw DataBaseError.FailedToPrepareSelectQuery(message: "There was an error trying to read from the data base.")
     }
     
-    var displayName: String?
+    var result: String?
     if sqlite3_step(statement) == SQLITE_ROW {
-        let displayNameChars = sqlite3_column_text(statement, 0)
-        if displayNameChars != nil {
-            displayName = String.fromCString(UnsafePointer<Int8>(displayNameChars))
+        let resultCharacters = sqlite3_column_text(statement, 0)
+        if resultCharacters != nil {
+            result = String.fromCString(UnsafePointer<Int8>(resultCharacters))
         }
     }
     if sqlite3_finalize(statement) != SQLITE_OK {
@@ -48,5 +57,5 @@ func localeDisplayNameForFolderName(folderName: String) throws -> String? {
     }
     dataBase = nil
     
-    return displayName
+    return result
 }

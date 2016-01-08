@@ -1,5 +1,5 @@
 //
-//  ToCSVsUISetup.swift
+//  DownloadsFolderBottomPathFieldSetup.swift
 //  LocalizationCSV
 //
 //  Created by Rogelio Gudino on 9/14/15.
@@ -8,14 +8,14 @@
 
 import Cocoa
 
-class ToCSVsUISetup : NSObject, LocalizationCSVUISetup {
+class DownloadsFolderBottomPathFieldSetup : NSObject, LocalizationCSVUISetup {
     @IBOutlet weak var localizationCSVViewController: LocalizationCSVViewController!
     
     func setup() {
         do {
             let downloadsFolderPathURL = try NSFileManager.defaultManager().URLForDirectory(.DownloadsDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
             let downloadsFolderPath = downloadsFolderPathURL.relativePath!
-            localizationCSVViewController.bottomFolderPathTextField.stringValue = downloadsFolderPath
+            localizationCSVViewController.bottomPathTextField.stringValue = downloadsFolderPath
         } catch {
             print("\(error)")
         }

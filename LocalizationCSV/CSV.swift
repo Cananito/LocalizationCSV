@@ -142,4 +142,11 @@ struct CSV {
         }
         return grid[ColumnTitleRowIndex].count - 1
     }
+    
+    func localeDisplayNames() -> [String] {
+        var columnTitleRow = self.grid[ColumnTitleRowIndex]
+        columnTitleRow.removeFirst()
+        columnTitleRow.removeLast()
+        return columnTitleRow
+    }
 }
