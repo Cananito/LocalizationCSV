@@ -55,7 +55,15 @@ func deleteFileAtPath(path: String) throws {
 }
 
 func deleteContentsOfDirectoryAtPath(path: String) throws {
-    
+    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+    for content in contents {
+        let contentPath = (path as NSString).stringByAppendingPathComponent(content)
+        if isPathDirectory(contentPath) {
+            try deleteContentsOfDirectoryAtPath(contentPath)
+        } else {
+            try deleteFileAtPath(contentPath)
+        }
+    }
 }
 
 func csvFileContents(csvFilePath: String) throws -> String {
