@@ -30,9 +30,11 @@ private func exectuteThrowableFunction(executeFunction: (String, String) throws 
     do {
         try executeFunction(topPathTextField.stringValue, bottomPathTextField.stringValue)
         finishWithErrorMessage(nil)
-    } catch Error.DestinationFolderAlreadyExists(let message) {
+    } catch GeneratorsError.DestinationFolderAlreadyExists(let message) {
         finishWithErrorMessage(message)
-    } catch Error.FailedToGenerateStringsFile(let message) {
+    } catch GeneratorsError.FailedToGenerateStringsFile(let message) {
+        finishWithErrorMessage(message)
+    } catch GeneratorsError.FailedToReadCSVFile(let message) {
         finishWithErrorMessage(message)
     } catch DataBaseError.DataBaseDoesNotExist(let message) {
         finishWithErrorMessage(message)

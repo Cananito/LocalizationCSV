@@ -12,7 +12,7 @@ func generateCSVsForFolderPath(folderPath: String, destinationPath: String) thro
     let folderName = NSDateFormatter.nowDateString()
     let destinationPath = destinationPath + "/" + folderName
     if NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
-        throw Error.DestinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
+        throw GeneratorsError.DestinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
     } else {
         try NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
     }
@@ -45,7 +45,7 @@ private func generateCSVFromLocalizableStringsFileForProject(folderPath: String,
     
     let destinationContents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(destinationPath)
     if destinationContents.count == 0 {
-        throw Error.FailedToGenerateStringsFile(message: "Failed to generate the strings files.")
+        throw GeneratorsError.FailedToGenerateStringsFile(message: "Failed to generate the strings files.")
     }
     
     for stringsFile in destinationContents {

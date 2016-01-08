@@ -60,14 +60,14 @@ func deleteContentsOfDirectoryAtPath(path: String) throws {
 
 func csvFileContents(csvFilePath: String) throws -> String {
     guard let data = NSData(contentsOfFile: csvFilePath) else {
-        throw Error.FailedToReadCSVFile(message: "Could not load CSV file at path: \(csvFilePath)")
+        throw GeneratorsError.FailedToReadCSVFile(message: "Could not load CSV file at path: \(csvFilePath)")
     }
     
     var convertedString: NSString? = nil
     let encoding = NSString.stringEncodingForData(data, encodingOptions: nil, convertedString: &convertedString, usedLossyConversion: nil)
     
     guard let string = convertedString else {
-        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+        throw GeneratorsError.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
     }
     
     if encoding == NSUTF8StringEncoding {
@@ -75,10 +75,10 @@ func csvFileContents(csvFilePath: String) throws -> String {
     }
     
     guard let utf8Data = string.dataUsingEncoding(NSUTF8StringEncoding) else {
-        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+        throw GeneratorsError.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
     }
     guard let utf8String = NSString(data: utf8Data, encoding: NSUTF8StringEncoding) else {
-        throw Error.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+        throw GeneratorsError.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
     }
     
     return utf8String as String

@@ -18,7 +18,7 @@ func generateJSONFromCSVFilePath(csvFilePath: String, destinationPath: String) t
     let folderName = NSDateFormatter.nowDateString()
     let destinationPath = destinationPath + "/" + folderName
     if NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
-        throw Error.DestinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
+        throw GeneratorsError.DestinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
     } else {
         try NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
     }
