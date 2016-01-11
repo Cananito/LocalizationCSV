@@ -9,9 +9,7 @@
 import Foundation
 
 struct JSON {
-    typealias JSONEntry = [String : String]
-    
-    private(set) var entries = [JSONEntry]()
+    private(set) var entries = [String : String]()
     
     init(csv: CSV, language: String) {
         if csv.grid.count == 0 {
@@ -35,8 +33,7 @@ struct JSON {
             let row = csv.grid[index]
             let key = row[csv.KeyColumnIndex]
             let value = row[localeColumnIndex!]
-            let entry = [key : value]
-            entries.append(entry)
+            entries[key] = value
         }
     }
     
