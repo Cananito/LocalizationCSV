@@ -27,3 +27,11 @@ The second tab takes care of updating existing `.strings` files out of existing 
 <img src="https://raw.githubusercontent.com/Cananito/LocalizationCSV/master/Assets/Screenshots/FromCSVs.png" />
 
 You should point the first text field to the folder containing the CSV files. You should point the second text field to the root of your project.
+
+### Generate Localized JSONs
+
+The third tab can create a localized set of JSON files out of an individual CSV file.
+
+<img src="https://raw.githubusercontent.com/Cananito/LocalizationCSV/master/Assets/Screenshots/ToJSONs.png" />
+
+You should point the first text field to the CSV file. The second text field indicates where it’ll create a new folder with the generated localized JSON files.
