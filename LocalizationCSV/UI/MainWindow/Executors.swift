@@ -16,7 +16,7 @@ class ToCSVsExecuter : NSObject, LocalizationCSVExecutor {
 
 class FromCSVsExecuter : NSObject, LocalizationCSVExecutor {
     func execute(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: String? -> ()) {
-        exectuteThrowableFunction(updateStringsFilesForFolderPath, topPathTextField: topPathTextField, bottomPathTextField: bottomPathTextField, finishWithErrorMessage: finishWithErrorMessage)
+        exectuteThrowableFunction(updateStringsFilesForFolderPath, topPathTextField: bottomPathTextField, bottomPathTextField: topPathTextField, finishWithErrorMessage: finishWithErrorMessage)
     }
 }
 
