@@ -27,7 +27,18 @@
 		4285C7DA1B9775D000A2A1DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4285C7D91B9775D000A2A1DC /* Assets.xcassets */; };
 		42A206EF1BA5155100F8D2E2 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 42A206EE1BA5155100F8D2E2 /* libsqlite3.0.tbd */; };
 		42A206F21BA5192500F8D2E2 /* LocalizationCSV.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */; };
+		42F1F4F41C63391000610786 /* LocalizationCSVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F1F4F31C63391000610786 /* LocalizationCSVTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		42F1F4F61C63391000610786 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4285C7CA1B9775CF00A2A1DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4285C7D11B9775CF00A2A1DC;
+			remoteInfo = LocalizationCSV;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		421043C91C3FA59C002F065B /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +64,9 @@
 		42A206EE1BA5155100F8D2E2 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		42A206F01BA515AD00F8D2E2 /* LocalizationCSV-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocalizationCSV-Bridging-Header.h"; sourceTree = "<group>"; };
 		42A206F11BA5192500F8D2E2 /* LocalizationCSV.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = LocalizationCSV.sqlite; sourceTree = "<group>"; };
+		42F1F4F11C63391000610786 /* LocalizationCSVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizationCSVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		42F1F4F31C63391000610786 /* LocalizationCSVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCSVTests.swift; sourceTree = "<group>"; };
+		42F1F4F51C63391000610786 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +75,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				42A206EF1BA5155100F8D2E2 /* libsqlite3.0.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42F1F4EE1C63391000610786 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				4285C7D41B9775D000A2A1DC /* LocalizationCSV */,
+				42F1F4F21C63391000610786 /* LocalizationCSVTests */,
 				4285C7D31B9775D000A2A1DC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -132,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				4285C7D21B9775D000A2A1DC /* LocalizationCSV.app */,
+				42F1F4F11C63391000610786 /* LocalizationCSVTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,6 +173,15 @@
 				42A206EE1BA5155100F8D2E2 /* libsqlite3.0.tbd */,
 			);
 			path = LocalizationCSV;
+			sourceTree = "<group>";
+		};
+		42F1F4F21C63391000610786 /* LocalizationCSVTests */ = {
+			isa = PBXGroup;
+			children = (
+				42F1F4F31C63391000610786 /* LocalizationCSVTests.swift */,
+				42F1F4F51C63391000610786 /* Info.plist */,
+			);
+			path = LocalizationCSVTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,17 +204,40 @@
 			productReference = 4285C7D21B9775D000A2A1DC /* LocalizationCSV.app */;
 			productType = "com.apple.product-type.application";
 		};
+		42F1F4F01C63391000610786 /* LocalizationCSVTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 42F1F4F81C63391000610786 /* Build configuration list for PBXNativeTarget "LocalizationCSVTests" */;
+			buildPhases = (
+				42F1F4ED1C63391000610786 /* Sources */,
+				42F1F4EE1C63391000610786 /* Frameworks */,
+				42F1F4EF1C63391000610786 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				42F1F4F71C63391000610786 /* PBXTargetDependency */,
+			);
+			name = LocalizationCSVTests;
+			productName = LocalizationCSVTests;
+			productReference = 42F1F4F11C63391000610786 /* LocalizationCSVTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		4285C7CA1B9775CF00A2A1DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Rogelio Gudino";
 				TargetAttributes = {
 					4285C7D11B9775CF00A2A1DC = {
 						CreatedOnToolsVersion = 7.0;
+					};
+					42F1F4F01C63391000610786 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 4285C7D11B9775CF00A2A1DC;
 					};
 				};
 			};
@@ -200,6 +255,7 @@
 			projectRoot = "";
 			targets = (
 				4285C7D11B9775CF00A2A1DC /* LocalizationCSV */,
+				42F1F4F01C63391000610786 /* LocalizationCSVTests */,
 			);
 		};
 /* End PBXProject section */
@@ -212,6 +268,13 @@
 				421043DB1C3FA610002F065B /* Main.storyboard in Resources */,
 				4285C7DA1B9775D000A2A1DC /* Assets.xcassets in Resources */,
 				42A206F21BA5192500F8D2E2 /* LocalizationCSV.sqlite in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		42F1F4EF1C63391000610786 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +304,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42F1F4ED1C63391000610786 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				42F1F4F41C63391000610786 /* LocalizationCSVTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		42F1F4F71C63391000610786 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4285C7D11B9775CF00A2A1DC /* LocalizationCSV */;
+			targetProxy = 42F1F4F61C63391000610786 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4285C7DF1B9775D000A2A1DC /* Debug */ = {
@@ -352,6 +431,34 @@
 			};
 			name = Release;
 		};
+		42F1F4F91C63391000610786 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LocalizationCSVTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cananito.LocalizationCSVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocalizationCSV.app/Contents/MacOS/LocalizationCSV";
+			};
+			name = Debug;
+		};
+		42F1F4FA1C63391000610786 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = LocalizationCSVTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cananito.LocalizationCSVTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocalizationCSV.app/Contents/MacOS/LocalizationCSV";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -372,6 +479,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		42F1F4F81C63391000610786 /* Build configuration list for PBXNativeTarget "LocalizationCSVTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42F1F4F91C63391000610786 /* Debug */,
+				42F1F4FA1C63391000610786 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
