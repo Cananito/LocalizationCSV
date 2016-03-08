@@ -32,7 +32,12 @@ struct JSON {
         for var index = 1; index < csv.grid.count; index++ {
             let row = csv.grid[index]
             let key = row[csv.KeyColumnIndex]
-            let value = row[localeColumnIndex!]
+            var value = row[localeColumnIndex!]
+
+            // Quite weird, but "\n" in NSString is represented as "\\n" when converted to String.
+            if value.containsString("\\n") {
+                value = value.stringByReplacingOccurrencesOfString("\\n", withString: "\n")
+            }
             entries[key] = value
         }
     }
