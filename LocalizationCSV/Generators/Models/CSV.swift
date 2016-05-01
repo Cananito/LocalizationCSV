@@ -45,7 +45,7 @@ struct CSV {
         
         let characters = Array(textRepresentation.characters)
         
-        for var index = 0; index < characters.count; index++ {
+        for index in 0 ..< characters.count {
             let character: Character
             if characters[index] == "\n" || characters[index] == "\r\n" || characters[index] == "\r" {
                 character = self.newLineCharacter
@@ -116,7 +116,7 @@ struct CSV {
         columnTitleRow.insert(language, atIndex: newColumnIndex)
         self.grid[ColumnTitleRowIndex] = columnTitleRow
         
-        for var index = 1; index < self.grid.count; index++ {
+        for index in 1 ..< self.grid.count {
             var row = self.grid[index]
             if let translatedEntry = stringsFile.entryForKey(row[KeyColumnIndex]) {
                 row.insert(translatedEntry.value, atIndex: newColumnIndex)
