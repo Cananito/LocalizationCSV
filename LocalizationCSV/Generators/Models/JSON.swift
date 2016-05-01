@@ -29,7 +29,7 @@ struct JSON {
             return
         }
         
-        for var index = 1; index < csv.grid.count; index++ {
+        for index in 1 ..< csv.grid.count {
             let row = csv.grid[index]
             let key = row[csv.KeyColumnIndex]
             var value = row[localeColumnIndex!]

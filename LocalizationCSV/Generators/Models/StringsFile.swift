@@ -65,7 +65,7 @@ struct StringsFile {
             return
         }
         
-        for var index = 1; index < csv.grid.count; index++ {
+        for index in 1 ..< csv.grid.count {
             let row = csv.grid[index]
             let key = row[csv.KeyColumnIndex]
             let value = row[localeColumnIndex!]
@@ -125,7 +125,7 @@ struct StringsFile {
         var keyEndIndex = 0
         var valueStartIndex = 0
         
-        for var index = 0; index < line.characters.count; index++ {
+        for index in 0 ..< line.characters.count {
             if index == 0 {
                 continue
             }
