@@ -487,6 +487,7 @@
 				42F1F4FA1C63391000610786 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
