@@ -8,56 +8,56 @@
 
 import Cocoa
 
-public func outputStringFromLaunchPath(launchPath: String, arguments: Array<String>) -> String {
-    let task = NSTask()
+public func outputStringFromLaunchPath(_ launchPath: String, arguments: Array<String>) -> String {
+    let task = Process()
     
     task.launchPath = launchPath
     task.arguments = arguments
     
-    let pipe = NSPipe()
+    let pipe = Pipe()
     task.standardOutput = pipe
     let fileHandle = pipe.fileHandleForReading
     
     task.launch()
     let outputData = fileHandle.readDataToEndOfFile()
-    return NSString(data: outputData, encoding: NSUTF8StringEncoding) as! String
+    return NSString(data: outputData, encoding: String.Encoding.utf8.rawValue)! as String
 }
 
-public func executeShellCommand(command: String) -> String {
+public func executeShellCommand(_ command: String) -> String {
     return outputStringFromLaunchPath("/bin/sh", arguments: [ "-c", command ])
 }
 
-public func isPathDirectory(path: String) -> Bool {
+public func isPathDirectory(_ path: String) -> Bool {
     var isDirectory = ObjCBool(false)
-    if NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: &isDirectory) == false {
+    if FileManager.default.fileExists(atPath: path, isDirectory: &isDirectory) == false {
         return false
     }
     return isDirectory.boolValue
 }
 
-public func isTextFieldValueADirectoryPath(textField: NSTextField) -> Bool {
+public func isTextFieldValueADirectoryPath(_ textField: NSTextField) -> Bool {
     let path = textField.stringValue
     return isPathDirectory(path)
 }
 
-public func isTextFieldValueValidPath(textField: NSTextField, withValidFileExtension: String?) -> Bool {
+public func isTextFieldValueValidPath(_ textField: NSTextField, withValidFileExtension: String?) -> Bool {
     let path = textField.stringValue
     if let fileExtension = withValidFileExtension {
         if (path as NSString).pathExtension != fileExtension {
             return false
         }
     }
-    return NSFileManager.defaultManager().fileExistsAtPath(path, isDirectory: nil)
+    return FileManager.default.fileExists(atPath: path, isDirectory: nil)
 }
 
-func deleteFileAtPath(path: String) throws {
-    try NSFileManager.defaultManager().removeItemAtPath(path)
+func deleteFileAtPath(_ path: String) throws {
+    try FileManager.default.removeItem(atPath: path)
 }
 
-func deleteContentsOfDirectoryAtPath(path: String) throws {
-    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+func deleteContentsOfDirectoryAtPath(_ path: String) throws {
+    let contents = try FileManager.default.contentsOfDirectory(atPath: path)
     for content in contents {
-        let contentPath = (path as NSString).stringByAppendingPathComponent(content)
+        let contentPath = (path as NSString).appendingPathComponent(content)
         if isPathDirectory(contentPath) {
             try deleteContentsOfDirectoryAtPath(contentPath)
         } else {
@@ -66,27 +66,27 @@ func deleteContentsOfDirectoryAtPath(path: String) throws {
     }
 }
 
-func csvFileContents(csvFilePath: String) throws -> String {
-    guard let data = NSData(contentsOfFile: csvFilePath) else {
-        throw GeneratorsError.FailedToReadCSVFile(message: "Could not load CSV file at path: \(csvFilePath)")
+func csvFileContents(_ csvFilePath: String) throws -> String {
+    guard let data = try? Data(contentsOf: URL(fileURLWithPath: csvFilePath)) else {
+        throw GeneratorsError.failedToReadCSVFile(message: "Could not load CSV file at path: \(csvFilePath)")
     }
     
     var convertedString: NSString? = nil
-    let encoding = NSString.stringEncodingForData(data, encodingOptions: nil, convertedString: &convertedString, usedLossyConversion: nil)
+    let encoding = NSString.stringEncoding(for: data, encodingOptions: nil, convertedString: &convertedString, usedLossyConversion: nil)
     
     guard let string = convertedString else {
-        throw GeneratorsError.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+        throw GeneratorsError.failedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
     }
     
-    if encoding == NSUTF8StringEncoding {
+    if encoding == String.Encoding.utf8.rawValue {
         return string as String
     }
     
-    guard let utf8Data = string.dataUsingEncoding(NSUTF8StringEncoding) else {
-        throw GeneratorsError.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+    guard let utf8Data = string.data(using: String.Encoding.utf8.rawValue) else {
+        throw GeneratorsError.failedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
     }
-    guard let utf8String = NSString(data: utf8Data, encoding: NSUTF8StringEncoding) else {
-        throw GeneratorsError.FailedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
+    guard let utf8String = NSString(data: utf8Data, encoding: String.Encoding.utf8.rawValue) else {
+        throw GeneratorsError.failedToReadCSVFile(message: "Could decode CSV file at path: \(csvFilePath)")
     }
     
     return utf8String as String
@@ -94,7 +94,7 @@ func csvFileContents(csvFilePath: String) throws -> String {
 
 extension String {
     func csvEscaped() -> String {
-        if self.containsString("\"") {
+        if self.contains("\"") {
             var escapedCharacters = [Character]()
             escapedCharacters.append("\"")
             for character in self.characters {
@@ -107,7 +107,7 @@ extension String {
             }
             escapedCharacters.append("\"")
             return String(escapedCharacters)
-        } else if self.containsString(",") || self.containsString("\n") {
+        } else if self.contains(",") || self.contains("\n") {
             return "\"" + self + "\""
         }
         
@@ -115,14 +115,14 @@ extension String {
     }
 }
 
-public extension NSDateFormatter {
-    private static var defaultDateFormatter: NSDateFormatter? = nil
+public extension DateFormatter {
+    private static var defaultDateFormatter: DateFormatter? = nil
     
     class func nowDateString() -> String {
         if defaultDateFormatter == nil {
-            defaultDateFormatter = NSDateFormatter()
+            defaultDateFormatter = DateFormatter()
             defaultDateFormatter!.dateFormat = "MM-dd-yyyy-hh-mm-ss-a"
         }
-        return defaultDateFormatter!.stringFromDate(NSDate())
+        return defaultDateFormatter!.string(from: Date())
     }
 }

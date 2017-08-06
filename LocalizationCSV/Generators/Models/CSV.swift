@@ -109,19 +109,19 @@ struct CSV {
         self.name = name
     }
     
-    mutating func addExistingTranslation(stringsFile: StringsFile, language: String) {
+    mutating func addExistingTranslation(_ stringsFile: StringsFile, language: String) {
         var columnTitleRow = self.grid[ColumnTitleRowIndex]
         let newColumnIndex = columnTitleRow.count - 1
         
-        columnTitleRow.insert(language, atIndex: newColumnIndex)
+        columnTitleRow.insert(language, at: newColumnIndex)
         self.grid[ColumnTitleRowIndex] = columnTitleRow
         
         for index in 1 ..< self.grid.count {
             var row = self.grid[index]
             if let translatedEntry = stringsFile.entryForKey(row[KeyColumnIndex]) {
-                row.insert(translatedEntry.value, atIndex: newColumnIndex)
+                row.insert(translatedEntry.value, at: newColumnIndex)
             } else {
-                row.insert("", atIndex: newColumnIndex)
+                row.insert("", at: newColumnIndex)
             }
             self.grid[index] = row
         }
@@ -131,9 +131,9 @@ struct CSV {
         var rowStrings = [String]()
         for row in grid {
             let escapedRow = row.map { $0.csvEscaped() }
-            rowStrings.append(escapedRow.joinWithSeparator(","))
+            rowStrings.append(escapedRow.joined(separator: ","))
         }
-        return rowStrings.joinWithSeparator(String(self.newLineCharacter))
+        return rowStrings.joined(separator: String(self.newLineCharacter))
     }
     
     func commentsColumnIndex() -> Int? {

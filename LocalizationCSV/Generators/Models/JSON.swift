@@ -18,7 +18,7 @@ struct JSON {
         
         let columnTitleRow = csv.grid[csv.ColumnTitleRowIndex]
         var localeColumnIndex: Int?
-        for (index, value) in columnTitleRow.enumerate() {
+        for (index, value) in columnTitleRow.enumerated() {
             if value == language {
                 localeColumnIndex = index
                 break
@@ -35,14 +35,14 @@ struct JSON {
             var value = row[localeColumnIndex!]
 
             // Quite weird, but "\n" in NSString is represented as "\\n" when converted to String.
-            if value.containsString("\\n") {
-                value = value.stringByReplacingOccurrencesOfString("\\n", withString: "\n")
+            if value.contains("\\n") {
+                value = value.replacingOccurrences(of: "\\n", with: "\n")
             }
             entries[key] = value
         }
     }
     
-    func dataRepresentation() throws -> NSData {
-        return try NSJSONSerialization.dataWithJSONObject(entries, options: NSJSONWritingOptions(rawValue: 0))
+    func dataRepresentation() throws -> Data {
+        return try JSONSerialization.data(withJSONObject: entries, options: JSONSerialization.WritingOptions(rawValue: 0))
     }
 }

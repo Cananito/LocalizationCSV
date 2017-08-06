@@ -18,7 +18,7 @@ class CSVsFilePathLogic : NSObject, LocalizationCSVFilePathLogic {
         return openPanel
     }
     
-    func shouldEnableExecuteButton(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField) -> Bool {
+    func shouldEnableExecuteButton(topPathTextField: NSTextField, bottomPathTextField: NSTextField) -> Bool {
         return isTextFieldValueADirectoryPath(topPathTextField) && isTextFieldValueADirectoryPath(bottomPathTextField)
     }
 }
@@ -34,7 +34,7 @@ class ToJSONsFilePathLogic : NSObject, LocalizationCSVFilePathLogic {
         return openPanel
     }
     
-    func shouldEnableExecuteButton(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField) -> Bool {
+    func shouldEnableExecuteButton(topPathTextField: NSTextField, bottomPathTextField: NSTextField) -> Bool {
         return isTextFieldValueValidPath(topPathTextField, withValidFileExtension: "csv") && isTextFieldValueADirectoryPath(bottomPathTextField)
     }
 }

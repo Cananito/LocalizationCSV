@@ -13,8 +13,8 @@ class DownloadsFolderBottomPathFieldSetup : NSObject, LocalizationCSVUISetup {
     
     func setup() {
         do {
-            let downloadsFolderPathURL = try NSFileManager.defaultManager().URLForDirectory(.DownloadsDirectory, inDomain: .UserDomainMask, appropriateForURL: nil, create: false)
-            let downloadsFolderPath = downloadsFolderPathURL.relativePath!
+            let downloadsFolderPathURL = try FileManager.default.url(for: .downloadsDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            let downloadsFolderPath = downloadsFolderPathURL.relativePath
             localizationCSVViewController.bottomPathTextField.stringValue = downloadsFolderPath
         } catch {
             print("\(error)")

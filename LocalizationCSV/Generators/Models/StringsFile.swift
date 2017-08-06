@@ -17,7 +17,7 @@ struct StringsFile {
     
     init(textRepresentation: String) {
         var entries = [StringsFileEntry]()
-        let lines = textRepresentation.componentsSeparatedByString("\n")
+        let lines = textRepresentation.components(separatedBy: "\n")
         var currentComment: String?
         var currentKeyValue: (key: String, value: String)?
         for line in lines {
@@ -31,7 +31,7 @@ struct StringsFile {
                 currentKeyValue = keyValueFromLine(line)
             }
             
-            if let keyValue = currentKeyValue, comment = currentComment {
+            if let keyValue = currentKeyValue, let comment = currentComment {
                 let entry = StringsFileEntry(key: keyValue.key, value: keyValue.value, comment: comment)
                 entries.append(entry)
                 currentComment = nil
@@ -54,7 +54,7 @@ struct StringsFile {
         
         let columnTitleRow = csv.grid[csv.ColumnTitleRowIndex]
         var localeColumnIndex: Int?
-        for (index, value) in columnTitleRow.enumerate() {
+        for (index, value) in columnTitleRow.enumerated() {
             if value == language {
                 localeColumnIndex = index
                 break
@@ -81,10 +81,10 @@ struct StringsFile {
             let entryString = "/* " + entry.comment + " */\n" + "\"" + entry.key + "\" = \"" + entry.value + "\";"
             entryStrings.append(entryString)
         }
-        return "\n" + entryStrings.joinWithSeparator("\n\n") + "\n"
+        return "\n" + entryStrings.joined(separator: "\n\n") + "\n"
     }
     
-    func entryForKey(key: String) -> StringsFileEntry? {
+    func entryForKey(_ key: String) -> StringsFileEntry? {
         for entry in entries {
             if entry.key == key {
                 return entry
@@ -95,7 +95,7 @@ struct StringsFile {
     
     // MARK: Private Methods
     
-    private func removeCommentSyntaxFromLine(line: String) -> String {
+    fileprivate func removeCommentSyntaxFromLine(_ line: String) -> String {
         let startAdvanceBy: Int
         let endAdvanceBy: Int
         
@@ -115,10 +115,10 @@ struct StringsFile {
             endAdvanceBy = 0
         }
         
-        return line[line.startIndex.advancedBy(startAdvanceBy)..<line.endIndex.advancedBy(endAdvanceBy)]
+        return line[line.characters.index(line.startIndex, offsetBy: startAdvanceBy)..<line.characters.index(line.endIndex, offsetBy: endAdvanceBy)]
     }
     
-    private func keyValueFromLine(line: String) -> (key: String, value: String) {
+    fileprivate func keyValueFromLine(_ line: String) -> (key: String, value: String) {
         let characters = Array(line.characters)
         var keyEnded = false
         var escaping = false
@@ -150,17 +150,17 @@ struct StringsFile {
             }
         }
         
-        let key = removeQuotesAndSemicolons(line[line.startIndex...line.startIndex.advancedBy(keyEndIndex)])
-        let value = removeQuotesAndSemicolons(line[line.startIndex.advancedBy(valueStartIndex)..<line.endIndex])
+        let key = removeQuotesAndSemicolons(line[line.startIndex...line.characters.index(line.startIndex, offsetBy: keyEndIndex)])
+        let value = removeQuotesAndSemicolons(line[line.characters.index(line.startIndex, offsetBy: valueStartIndex)..<line.endIndex])
         return (key, value)
     }
     
-    private func removeQuotesAndSemicolons(string: String) -> String {
+    private func removeQuotesAndSemicolons(_ string: String) -> String {
         let result: String
         if string.hasSuffix(";") {
-            result = string[string.startIndex.advancedBy(1)..<string.endIndex.advancedBy(-2)]
+            result = string[string.characters.index(string.startIndex, offsetBy: 1)..<string.characters.index(string.endIndex, offsetBy: -2)]
         } else {
-            result = string[string.startIndex.advancedBy(1)..<string.endIndex.advancedBy(-1)]
+            result = string[string.characters.index(string.startIndex, offsetBy: 1)..<string.characters.index(string.endIndex, offsetBy: -1)]
         }
         return result
     }

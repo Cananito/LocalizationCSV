@@ -16,12 +16,12 @@ import Cocoa
 @objc protocol LocalizationCSVExecutor {
     // TODO: Switch to `func execute() throws` to move error handling to the execute(sender:) method.
     // Can't do this because of a Swift bug.
-    func execute(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: String? -> ())
+    func execute(topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: (String?) -> ())
 }
 
 @objc protocol LocalizationCSVFilePathLogic {
     func openPanel() -> NSOpenPanel
-    func shouldEnableExecuteButton(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField) -> Bool
+    func shouldEnableExecuteButton(topPathTextField: NSTextField, bottomPathTextField: NSTextField) -> Bool
 }
 
 class LocalizationCSVViewController : NSViewController {
@@ -47,73 +47,73 @@ class LocalizationCSVViewController : NSViewController {
         localizationCSVUISetup?.setup()
     }
     
-    override func controlTextDidChange(obj: NSNotification) {
+    override func controlTextDidChange(_ obj: Notification) {
         updateExecuteButtonEnabledState()
     }
     
     // MARK: Action Methods
     
-    @IBAction func browseTopFolderPath(sender: AnyObject!) {
+    @IBAction func browseTopFolderPath(_ sender: AnyObject!) {
         showOpenPanelForTextField(topPathTextField)
     }
     
-    @IBAction func browseBottomFolderPath(sender: AnyObject!) {
+    @IBAction func browseBottomFolderPath(_ sender: AnyObject!) {
         showOpenPanelForTextField(bottomPathTextField)
     }
     
-    @IBAction func execute(sender: AnyObject!) {
+    @IBAction func execute(_ sender: AnyObject!) {
         showLoadingUI()
-        NSOperationQueue().addOperationWithBlock { [unowned self] () -> Void in
+        OperationQueue().addOperation { [unowned self] () -> Void in
             self.localizationCSVExecutor.execute(topPathTextField: self.topPathTextField, bottomPathTextField: self.bottomPathTextField, finishWithErrorMessage: self.finishExecuteActionWithErrorMessage)
         }
     }
     
     // MARK: Private Methods
     
-    private func showOpenPanelForTextField(textField: NSTextField) {
+    private func showOpenPanelForTextField(_ textField: NSTextField) {
         let openPanel = self.localizationCSVFilePathLogic.openPanel()
-        openPanel.beginWithCompletionHandler { [weak self] (result) -> Void in
-            if result == NSFileHandlingPanelOKButton, let pathURL = openPanel.URL {
-                textField.stringValue = pathURL.relativePath!
+        openPanel.begin { [weak self] (result) -> Void in
+            if result == NSFileHandlingPanelOKButton, let pathURL = openPanel.url {
+                textField.stringValue = pathURL.relativePath
                 self?.updateExecuteButtonEnabledState()
             }
         }
     }
     
     private func updateExecuteButtonEnabledState() {
-        executeButton.enabled = self.localizationCSVFilePathLogic.shouldEnableExecuteButton(topPathTextField: topPathTextField, bottomPathTextField: bottomPathTextField)
+        executeButton.isEnabled = self.localizationCSVFilePathLogic.shouldEnableExecuteButton(topPathTextField: topPathTextField, bottomPathTextField: bottomPathTextField)
     }
     
     private func showLoadingUI() {
-        topPathLabel.hidden = true
-        topPathTextField.hidden = true
-        browseTopPathButton.hidden = true
-        bottomPathLabel.hidden = true
-        bottomPathTextField.hidden = true
-        browseBottomPathButton.hidden = true
-        executeButton.hidden = true
+        topPathLabel.isHidden = true
+        topPathTextField.isHidden = true
+        browseTopPathButton.isHidden = true
+        bottomPathLabel.isHidden = true
+        bottomPathTextField.isHidden = true
+        browseBottomPathButton.isHidden = true
+        executeButton.isHidden = true
         loadingIndicator.startAnimation(self)
     }
     
     private func hideLoadingUI() {
-        topPathLabel.hidden = false
-        topPathTextField.hidden = false
-        browseTopPathButton.hidden = false
-        bottomPathLabel.hidden = false
-        bottomPathTextField.hidden = false
-        browseBottomPathButton.hidden = false
-        executeButton.hidden = false
+        topPathLabel.isHidden = false
+        topPathTextField.isHidden = false
+        browseTopPathButton.isHidden = false
+        bottomPathLabel.isHidden = false
+        bottomPathTextField.isHidden = false
+        browseBottomPathButton.isHidden = false
+        executeButton.isHidden = false
         loadingIndicator.stopAnimation(self)
     }
     
-    private func finishExecuteActionWithErrorMessage(errorMessage: String?) {
-        NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+    private func finishExecuteActionWithErrorMessage(_ errorMessage: String?) {
+        OperationQueue.main.addOperation { () -> Void in
             self.hideLoadingUI()
             if let message = errorMessage {
                 let alert = NSAlert()
                 alert.messageText = message
-                alert.alertStyle = NSAlertStyle.InformationalAlertStyle
-                alert.beginSheetModalForWindow(self.view.window!, completionHandler: Optional.None)
+                alert.alertStyle = NSAlertStyle.informational
+                alert.beginSheetModal(for: self.view.window!, completionHandler: Optional.none)
             }
         }
     }

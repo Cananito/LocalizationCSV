@@ -16,7 +16,7 @@ class PreferencesWindowController : NSWindowController {
         switchToPaneWithIdentifier("General")
     }
     
-    private func switchToPaneWithIdentifier(identifier: String) {
+    private func switchToPaneWithIdentifier(_ identifier: String) {
         self.toolbar.selectedItemIdentifier = identifier
         self.window?.title = identifier
     }

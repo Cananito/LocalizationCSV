@@ -6,8 +6,8 @@
 //  Copyright © 2016 Rogelio Gudino. All rights reserved.
 //
 
-enum GeneratorsError: ErrorType {
-    case DestinationFolderAlreadyExists(message: String)
-    case FailedToGenerateStringsFile(message: String)
-    case FailedToReadCSVFile(message: String)
+enum GeneratorsError: Error {
+    case destinationFolderAlreadyExists(message: String)
+    case failedToGenerateStringsFile(message: String)
+    case failedToReadCSVFile(message: String)
 }

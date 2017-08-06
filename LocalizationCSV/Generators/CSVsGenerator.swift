@@ -8,13 +8,13 @@
 
 import Foundation
 
-func generateCSVsForFolderPath(folderPath: String, destinationPath: String) throws {
-    let folderName = NSDateFormatter.nowDateString()
+func generateCSVsForFolderPath(_ folderPath: String, destinationPath: String) throws {
+    let folderName = DateFormatter.nowDateString()
     let destinationPath = destinationPath + "/" + folderName
-    if NSFileManager.defaultManager().fileExistsAtPath(destinationPath) {
-        throw GeneratorsError.DestinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
+    if FileManager.default.fileExists(atPath: destinationPath) {
+        throw GeneratorsError.destinationFolderAlreadyExists(message: "Folder named '\(folderName)' already exists!")
     } else {
-        try NSFileManager.defaultManager().createDirectoryAtPath(destinationPath, withIntermediateDirectories: false, attributes: nil)
+        try FileManager.default.createDirectory(atPath: destinationPath, withIntermediateDirectories: false, attributes: nil)
     }
     
     try generateCSVFromLocalizableStringsFileForProject(folderPath, destinationPath: destinationPath)
@@ -22,15 +22,15 @@ func generateCSVsForFolderPath(folderPath: String, destinationPath: String) thro
     try appendExistingTranslationsFromFolder(folderPath, destinationPath: destinationPath)
 }
 
-func updateStringsFilesForFolderPath(folderPath: String, csvsFolderPath: String) throws {
-    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
+func updateStringsFilesForFolderPath(_ folderPath: String, csvsFolderPath: String) throws {
+    let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath)
     for content in contents {
         if content == "Base.lproj" {
-            let baseFolderPath = folderPath.stringByAppendingFormat("/%@", content)
+            let baseFolderPath = folderPath.appendingFormat("/%@", content)
             try updateStringsFilesForBaseFolderPath(baseFolderPath, folderPath: folderPath, csvsFolderPath: csvsFolderPath)
         }
         
-        let path = folderPath.stringByAppendingFormat("/%@", content)
+        let path = folderPath.appendingFormat("/%@", content)
         if isPathDirectory(path) {
             try updateStringsFilesForFolderPath(path, csvsFolderPath: csvsFolderPath)
         }
@@ -39,13 +39,13 @@ func updateStringsFilesForFolderPath(folderPath: String, csvsFolderPath: String)
 
 // MARK: Localizable.strings
 
-private func generateCSVFromLocalizableStringsFileForProject(folderPath: String, destinationPath: String) throws {
+private func generateCSVFromLocalizableStringsFileForProject(_ folderPath: String, destinationPath: String) throws {
     // `find ./ -name "*.m" -print0 | xargs -0 genstrings -o .`
-    executeShellCommand("find \(folderPath) -name \"*.m\" -print0 | xargs -0 genstrings -o \(destinationPath)")
+    _ = executeShellCommand("find \(folderPath) -name \"*.m\" -print0 | xargs -0 genstrings -o \(destinationPath)")
     
-    let destinationContents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(destinationPath)
+    let destinationContents = try FileManager.default.contentsOfDirectory(atPath: destinationPath)
     if destinationContents.count == 0 {
-        throw GeneratorsError.FailedToGenerateStringsFile(message: "Failed to generate the strings files.")
+        throw GeneratorsError.failedToGenerateStringsFile(message: "Failed to generate the strings files.")
     }
     
     for stringsFile in destinationContents {
@@ -57,35 +57,35 @@ private func generateCSVFromLocalizableStringsFileForProject(folderPath: String,
 
 // MARK: Interface Builder
 
-private func generateCSVsFromInterfaceBuilderFiles(folderPath: String, destinationPath: String) throws {
-    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
+private func generateCSVsFromInterfaceBuilderFiles(_ folderPath: String, destinationPath: String) throws {
+    let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath)
     for content in contents {
         if content == "Base.lproj" {
-            let baseFolderPath = folderPath.stringByAppendingFormat("/%@", content)
+            let baseFolderPath = folderPath.appendingFormat("/%@", content)
             try generateCSVsFromInterfaceBuilderBaseFolder(baseFolderPath, destinationPath: destinationPath)
         }
         
-        let path = folderPath.stringByAppendingFormat("/%@", content)
+        let path = folderPath.appendingFormat("/%@", content)
         if isPathDirectory(path) {
             try generateCSVsFromInterfaceBuilderFiles(path, destinationPath: destinationPath)
         }
     }
 }
 
-private func generateCSVsFromInterfaceBuilderBaseFolder(folderPath: String, destinationPath: String) throws {
-    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
+private func generateCSVsFromInterfaceBuilderBaseFolder(_ folderPath: String, destinationPath: String) throws {
+    let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath)
     for content in contents {
         if content.hasSuffix(".storyboard") == false && content.hasSuffix(".xib") == false {
             continue
         }
         
-        let path = folderPath.stringByAppendingFormat("/%@", content)
-        let destination = destinationPath + "/" + (content as NSString).stringByDeletingPathExtension + ".strings"
-        let escapedPath = path.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
-        let escapedDestination = destination.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
+        let path = folderPath.appendingFormat("/%@", content)
+        let destination = destinationPath + "/" + (content as NSString).deletingPathExtension + ".strings"
+        let escapedPath = path.replacingOccurrences(of: " ", with: "\\ ")
+        let escapedDestination = destination.replacingOccurrences(of: " ", with: "\\ ")
         
         // `ibtool --export-strings-file Main.strings Main.storyboard`
-        executeShellCommand("ibtool --export-strings-file \(escapedDestination) \(escapedPath)")
+        _ = executeShellCommand("ibtool --export-strings-file \(escapedDestination) \(escapedPath)")
         try generateCSVFromStringsFilePath(destination, destinationPath: destinationPath)
         try deleteFileAtPath(destination)
     }
@@ -93,14 +93,14 @@ private func generateCSVsFromInterfaceBuilderBaseFolder(folderPath: String, dest
 
 // MARK: CSV to Strings
 
-func updateStringsFilesForBaseFolderPath(baseFolderPath: String, folderPath: String, csvsFolderPath: String) throws {
-    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(baseFolderPath)
+func updateStringsFilesForBaseFolderPath(_ baseFolderPath: String, folderPath: String, csvsFolderPath: String) throws {
+    let contents = try FileManager.default.contentsOfDirectory(atPath: baseFolderPath)
     for content in contents {
         if !content.hasSuffix(".storyboard") && !content.hasSuffix(".xib") && !content.hasSuffix(".strings") {
             continue
         }
         
-        let fileName = (content as NSString).stringByDeletingPathExtension
+        let fileName = (content as NSString).deletingPathExtension
         if content.hasSuffix(".storyboard") || content.hasSuffix(".xib") {
             try updateStringsFilesForFile(fileName, folderPath: folderPath, includeBaseLocalization: false, csvsFolderPath: csvsFolderPath)
         } else {
@@ -109,13 +109,13 @@ func updateStringsFilesForBaseFolderPath(baseFolderPath: String, folderPath: Str
     }
 }
 
-func updateStringsFilesForFile(fileName: String, folderPath: String, includeBaseLocalization: Bool, csvsFolderPath: String) throws {
+func updateStringsFilesForFile(_ fileName: String, folderPath: String, includeBaseLocalization: Bool, csvsFolderPath: String) throws {
     if let csvFilePath = try csvFilePathForFileName(fileName, inDestinationPath: csvsFolderPath) {
         let textRepresentation = try csvFileContents(csvFilePath)
-        let newLineCharacter = NSUserDefaults.standardUserDefaults().stringForKey(NewLineCharacterKey) ?? "\n"
+        let newLineCharacter = UserDefaults.standard.string(forKey: NewLineCharacterKey) ?? "\n"
         let csv = CSV(textRepresentation: textRepresentation, name: fileName, newLineCharacter: Character(newLineCharacter))
         
-        let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
+        let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath)
         for content in contents {
             if !includeBaseLocalization && content.hasPrefix("Base") {
                 continue
@@ -130,7 +130,7 @@ func updateStringsFilesForFile(fileName: String, folderPath: String, includeBase
                 language = l
             }
             let stringsFile = StringsFile(csv: csv, language: language)
-            let contentPath = folderPath.stringByAppendingFormat("/%@", content)
+            let contentPath = folderPath.appendingFormat("/%@", content)
             try persistStringsFile(stringsFile, fileName: fileName, destiantionPath: contentPath)
         }
     }
@@ -138,31 +138,31 @@ func updateStringsFilesForFile(fileName: String, folderPath: String, includeBase
 
 // MARK: Appending
 
-private func appendExistingTranslationsFromFolder(folderPath: String, destinationPath: String) throws {
-    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
+private func appendExistingTranslationsFromFolder(_ folderPath: String, destinationPath: String) throws {
+    let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath)
     for content in contents {
         if content.hasSuffix(".lproj") && content.hasPrefix("Base") == false {
-            let localeFolderPath = folderPath.stringByAppendingFormat("/%@", content)
+            let localeFolderPath = folderPath.appendingFormat("/%@", content)
             try appendExistingTranslationsFromLocaleFolder(localeFolderPath, destinationPath: destinationPath)
         }
         
-        let path = folderPath.stringByAppendingFormat("/%@", content)
+        let path = folderPath.appendingFormat("/%@", content)
         if isPathDirectory(path) {
             try appendExistingTranslationsFromFolder(path, destinationPath: destinationPath)
         }
     }
 }
 
-private func appendExistingTranslationsFromLocaleFolder(folderPath: String, destinationPath: String) throws {
-    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(folderPath)
+private func appendExistingTranslationsFromLocaleFolder(_ folderPath: String, destinationPath: String) throws {
+    let contents = try FileManager.default.contentsOfDirectory(atPath: folderPath)
     for content in contents {
         if content.hasSuffix(".strings") == false {
             continue
         }
         
-        let fileName = (content as NSString).stringByDeletingPathExtension
+        let fileName = (content as NSString).deletingPathExtension
         if let csvFilePath = try csvFilePathForFileName(fileName, inDestinationPath: destinationPath) {
-            let stringsFilePath = folderPath.stringByAppendingFormat("/%@", content)
+            let stringsFilePath = folderPath.appendingFormat("/%@", content)
             let stringsFileContents = try NSString(contentsOfFile: stringsFilePath, usedEncoding: nil) as String
             let stringsFile = StringsFile(textRepresentation: stringsFileContents)
             
@@ -172,7 +172,7 @@ private func appendExistingTranslationsFromLocaleFolder(folderPath: String, dest
             }
             
             let csvFileContents = try NSString(contentsOfFile: csvFilePath, usedEncoding: nil) as String
-            let newLineCharacter = NSUserDefaults.standardUserDefaults().stringForKey(NewLineCharacterKey) ?? "\n"
+            let newLineCharacter = UserDefaults.standard.string(forKey: NewLineCharacterKey) ?? "\n"
             var csv = CSV(textRepresentation: csvFileContents, name: fileName, newLineCharacter: Character(newLineCharacter))
             csv.addExistingTranslation(stringsFile, language: language)
             try persistCSV(csv, destinationPath: destinationPath)
@@ -182,32 +182,32 @@ private func appendExistingTranslationsFromLocaleFolder(folderPath: String, dest
 
 // MARK: General
 
-private func generateCSVFromStringsFilePath(filePath: String, destinationPath: String) throws {
+private func generateCSVFromStringsFilePath(_ filePath: String, destinationPath: String) throws {
     let fileContents = try NSString(contentsOfFile: filePath, usedEncoding: nil) as String
     let stringsFile = StringsFile(textRepresentation: fileContents)
-    let csvFileName = ((filePath as NSString).lastPathComponent as NSString).stringByDeletingPathExtension
-    let newLineCharacter = NSUserDefaults.standardUserDefaults().stringForKey(NewLineCharacterKey) ?? "\n"
+    let csvFileName = ((filePath as NSString).lastPathComponent as NSString).deletingPathExtension
+    let newLineCharacter = UserDefaults.standard.string(forKey: NewLineCharacterKey) ?? "\n"
     let csv = CSV(baseStringsFile: stringsFile, name: csvFileName, newLineCharacter: Character(newLineCharacter))
     try persistCSV(csv, destinationPath: destinationPath)
 }
 
-private func persistCSV(csv: CSV, destinationPath: String) throws {
+private func persistCSV(_ csv: CSV, destinationPath: String) throws {
     let csvText = csv.textRepresentation() as NSString
-    let csvFilePath = destinationPath.stringByAppendingFormat("/%@.csv", csv.name)
-    try csvText.writeToFile(csvFilePath, atomically: true, encoding: NSUTF8StringEncoding)
+    let csvFilePath = destinationPath.appendingFormat("/%@.csv", csv.name)
+    try csvText.write(toFile: csvFilePath, atomically: true, encoding: String.Encoding.utf8.rawValue)
 }
 
-private func persistStringsFile(stringsFile: StringsFile, fileName: String, destiantionPath: String) throws {
+private func persistStringsFile(_ stringsFile: StringsFile, fileName: String, destiantionPath: String) throws {
     let stringsFileText = stringsFile.textRepresentation()
-    let stringsFilePath = destiantionPath.stringByAppendingFormat("/%@.strings", fileName)
-    try stringsFileText.writeToFile(stringsFilePath, atomically: true, encoding: NSUTF8StringEncoding)
+    let stringsFilePath = destiantionPath.appendingFormat("/%@.strings", fileName)
+    try stringsFileText.write(toFile: stringsFilePath, atomically: true, encoding: String.Encoding.utf8)
 }
 
-private func csvFilePathForFileName(fileName: String, inDestinationPath: String) throws -> String? {
-    let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(inDestinationPath)
+private func csvFilePathForFileName(_ fileName: String, inDestinationPath: String) throws -> String? {
+    let contents = try FileManager.default.contentsOfDirectory(atPath: inDestinationPath)
     for content in contents {
-        if (content as NSString).stringByDeletingPathExtension == fileName {
-            return inDestinationPath.stringByAppendingFormat("/%@", content)
+        if (content as NSString).deletingPathExtension == fileName {
+            return inDestinationPath.appendingFormat("/%@", content)
         }
     }
     return nil

@@ -16,19 +16,19 @@ class GeneralPreferencesViewController : NSViewController {
         selectRadioCellForCurrentDefaultNewLineCharacter()
     }
     
-    @IBAction func changeNewLineCharacter(sender: NSMatrix!) {
+    @IBAction func changeNewLineCharacter(_ sender: NSMatrix!) {
         guard let cell = sender.selectedCell() else { return }
         if cell.title == "\\n" {
-            NSUserDefaults.standardUserDefaults().setObject("\n", forKey: NewLineCharacterKey)
+            UserDefaults.standard.set("\n", forKey: NewLineCharacterKey)
         } else if cell.title == "\\r\\n" {
-            NSUserDefaults.standardUserDefaults().setObject("\r\n", forKey: NewLineCharacterKey)
+            UserDefaults.standard.set("\r\n", forKey: NewLineCharacterKey)
         } else if cell.title == "\\r" {
-            NSUserDefaults.standardUserDefaults().setObject("\r", forKey: NewLineCharacterKey)
+            UserDefaults.standard.set("\r", forKey: NewLineCharacterKey)
         }
     }
     
     private func selectRadioCellForCurrentDefaultNewLineCharacter() {
-        if let newLineCharacterString = NSUserDefaults.standardUserDefaults().stringForKey(NewLineCharacterKey) {
+        if let newLineCharacterString = UserDefaults.standard.string(forKey: NewLineCharacterKey) {
             let cellTitle: String
             switch (newLineCharacterString) {
             case ("\n"):

@@ -9,42 +9,42 @@
 import Cocoa
 
 class ToCSVsExecuter : NSObject, LocalizationCSVExecutor {
-    func execute(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: String? -> ()) {
+    func execute(topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: (String?) -> ()) {
         exectuteThrowableFunction(generateCSVsForFolderPath, topPathTextField: topPathTextField, bottomPathTextField: bottomPathTextField, finishWithErrorMessage: finishWithErrorMessage)
     }
 }
 
 class FromCSVsExecuter : NSObject, LocalizationCSVExecutor {
-    func execute(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: String? -> ()) {
+    func execute(topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: (String?) -> ()) {
         exectuteThrowableFunction(updateStringsFilesForFolderPath, topPathTextField: bottomPathTextField, bottomPathTextField: topPathTextField, finishWithErrorMessage: finishWithErrorMessage)
     }
 }
 
 class ToJSONsExecuter : NSObject, LocalizationCSVExecutor {
-    func execute(topPathTextField topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: String? -> ()) {
+    func execute(topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: (String?) -> ()) {
         exectuteThrowableFunction(generateJSONFromCSVFilePath, topPathTextField: topPathTextField, bottomPathTextField: bottomPathTextField, finishWithErrorMessage: finishWithErrorMessage)
     }
 }
 
-private func exectuteThrowableFunction(executeFunction: (String, String) throws -> (), topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: String? -> ()) {
+private func exectuteThrowableFunction(_ executeFunction: (String, String) throws -> (), topPathTextField: NSTextField, bottomPathTextField: NSTextField, finishWithErrorMessage: (String?) -> ()) {
     do {
         try executeFunction(topPathTextField.stringValue, bottomPathTextField.stringValue)
         finishWithErrorMessage(nil)
-    } catch GeneratorsError.DestinationFolderAlreadyExists(let message) {
+    } catch GeneratorsError.destinationFolderAlreadyExists(let message) {
         finishWithErrorMessage(message)
-    } catch GeneratorsError.FailedToGenerateStringsFile(let message) {
+    } catch GeneratorsError.failedToGenerateStringsFile(let message) {
         finishWithErrorMessage(message)
-    } catch GeneratorsError.FailedToReadCSVFile(let message) {
+    } catch GeneratorsError.failedToReadCSVFile(let message) {
         finishWithErrorMessage(message)
-    } catch DataBaseError.DataBaseDoesNotExist(let message) {
+    } catch DataBaseError.dataBaseDoesNotExist(let message) {
         finishWithErrorMessage(message)
-    } catch DataBaseError.FailToOpen(let message) {
+    } catch DataBaseError.failToOpen(let message) {
         finishWithErrorMessage(message)
-    } catch DataBaseError.FailToClose(let message) {
+    } catch DataBaseError.failToClose(let message) {
         finishWithErrorMessage(message)
-    } catch DataBaseError.FailedToPrepareSelectQuery(let message) {
+    } catch DataBaseError.failedToPrepareSelectQuery(let message) {
         finishWithErrorMessage(message)
-    } catch DataBaseError.FailedToFinalizeSelectQuery(let message) {
+    } catch DataBaseError.failedToFinalizeSelectQuery(let message) {
         finishWithErrorMessage(message)
     } catch {
         finishWithErrorMessage("Something went wrong. Please go to https://github.com/Cananito/LocalizationCSV/issues and submit your issue with all the possible information about how you got this error.")
